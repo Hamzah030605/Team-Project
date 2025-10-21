@@ -18,3 +18,12 @@ button { padding: 8px 12px; border: none; background: #2563eb; color: white; bor
 ul { list-style: none; padding: 0; margin: 0; }
 li { padding: 8px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
 .delete { background: transparent; border: none; color: #e11d48; cursor: pointer; }
+
+/*the start of the homepage sytlying*/
+
+h1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #ffd25f;
+    
+    
+}
