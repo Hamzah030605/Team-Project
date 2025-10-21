@@ -27,19 +27,14 @@ Notes:
 
 Collaborating
 -------------
-- I've added your team members as collaborators on GitHub. To get the project:
-
-```bash
-# clone the repo
-git clone git@github.com:Hamzah030605/Team-Project.git
-cd Team-Project
-```
-
-- Branching: create feature branches for work, e.g. `git checkout -b feat/add-tests`.
-- Commit messages: short subject line, optional longer body. Example:
-  `git commit -m "feat: add user login UI" -m "Adds login form and client-side validation"`
-
-- Run tests (if added) and ensure linting passes before pushing PRs.
+1. Accept the collaborator's invite.
+2. Clone the repo: `git clone https://github.com/Hamzah030605/Team-Project.git`
+3. Pull the latest changes: `git pull origin main`
+4. Create a new branch: `git checkout -b feature-branch-name`
+5. Make edits and commit:  
+   ```bash
+   git add .
+   git commit -m "Description of your change"
 
 License
 -------
