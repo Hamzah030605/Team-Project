@@ -1,11 +1,10 @@
 # Contributing
 
-Thanks for helping with this project! A few guidelines to keep things smooth:
-
+Anyone who wants to push and commit code they have edited, it's important to follow these instructions!
 - Create a topic branch for any work: `git checkout -b feat/your-feature`.
-- Make small, focused commits and write clear commit messages.
+- Make small, focused commits and write clear commit messages - explaining what change was made.
 - Open a Pull Request against `main` when your feature is ready for review.
-- Add tests for new behavior where appropriate.
+- Add tests for new behaviour where appropriate.
 - Run the backend locally before creating a PR:
 
 ```bash
