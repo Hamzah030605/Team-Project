@@ -22,8 +22,79 @@ li { padding: 8px; border-bottom: 1px solid #f0f0f0; display: flex; justify-cont
 /*the start of the homepage sytlying*/
 
 h1 {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: #ffd25f;
-    
-    
+  font-family: "Poppins", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #ffd25f;
+  font-size: 2.5rem;     
+  font-weight: 600;       
+  text-align: center;    
+  margin-top: -20px;      
+  margin-bottom: 20px;
 }
+
+header, nav {
+  overflow: visible !important;
+}
+
+nav {           /* styling the navigation bar, including the background colour */
+        background-color: #dfc88a;
+        overflow: hidden;
+}
+
+
+nav  a {            /*the naviagtion bar */
+    float: left;
+            display: block;
+            color: rgb(43, 40, 40);
+            text-align: center;
+            margin: 0 auto;
+            padding: 14px 20px;
+            text-decoration: solid;
+}
+
+.nav-search {
+  padding-top: 10px;
+  padding-bottom: 0px;
+  display: flex;
+  gap: 8px; /* space between input and button */
+  align-items: center;
+}
+
+.nav-search input[type="text"] {
+  padding: 6px 12px;               
+  border: 1px solid #ccc;         
+  border-radius: 6px;              
+  outline: none;                    
+  transition: 0.3s;                
+}
+
+.nav-search button {
+  padding: 6px 14px;
+  border: none;
+  background-color: #f0bb35;       
+  color: #0e0d0d;                 
+  border-radius: 6px;            
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;               
+}
+
+.navbar {
+  position: relative;
+  border-radius: 10px;
+  margin: 0 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 1050;
+}
+
+.navbar .nav-link:hover {
+  background-color: #ffd25f;
+  color: white !important;
+  border-radius: 5px;
+}
+
+.navbar .dropdown-menu {
+  background-color: #fdfaf3;
+  z-index: 2000 !important; 
+}
+
+
