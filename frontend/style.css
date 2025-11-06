@@ -1,100 +1,23 @@
-body {
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  background: #f7f7f8;
-  margin: 0;
-  padding: 40px;
-}
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-form { display: flex; gap: 8px; margin-bottom: 16px; }
-input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
-button { padding: 8px 12px; border: none; background: #2563eb; color: white; border-radius: 4px; cursor: pointer; }
-ul { list-style: none; padding: 0; margin: 0; }
-li { padding: 8px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
-.delete { background: transparent; border: none; color: #e11d48; cursor: pointer; }
 
 /*the start of the homepage sytlying*/
-
 h1 {
   font-family: "Poppins", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  color: #ffd25f;
+  color: #ed9b6b;
   font-size: 2.5rem;     
   font-weight: 600;       
   text-align: center;    
-  margin-top: -20px;      
+  margin-top: 20px;      
   margin-bottom: 20px;
 }
 
-header, nav {
-  overflow: visible !important;
-}
-
-nav {           /* styling the navigation bar, including the background colour */
-        background-color: #dfc88a;
-        overflow: hidden;
-}
-
-
-nav  a {            /*the naviagtion bar */
-    float: left;
-            display: block;
-            color: rgb(43, 40, 40);
-            text-align: center;
-            margin: 0 auto;
-            padding: 14px 20px;
-            text-decoration: solid;
-}
-
-.nav-search {
-  padding-top: 10px;
-  padding-bottom: 0px;
-  display: flex;
-  gap: 8px; /* space between input and button */
-  align-items: center;
-}
-
-.nav-search input[type="text"] {
-  padding: 6px 12px;               
-  border: 1px solid #ccc;         
-  border-radius: 6px;              
-  outline: none;                    
-  transition: 0.3s;                
-}
-
-.nav-search button {
-  padding: 6px 14px;
-  border: none;
-  background-color: #f0bb35;       
-  color: #0e0d0d;                 
-  border-radius: 6px;            
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.3s;               
-}
-
-.navbar {
-  position: relative;
-  border-radius: 10px;
-  margin: 0 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  z-index: 1050;
-}
-
-.navbar .nav-link:hover {
-  background-color: #ffd25f;
-  color: white !important;
-  border-radius: 5px;
-}
-
+/* Optional: style for dropdown menus inside navbar */
 .navbar .dropdown-menu {
-  background-color: #fdfaf3;
-  z-index: 2000 !important; 
+  background-color: #f1ccbd;
+  z-index: 2000 !important;
 }
 
+/* Style for the entire navbar background if needed */
+.navbar-custom {
+  background-color: #f7b9a1; /* your custom color */
+}
 
