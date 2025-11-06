@@ -39,6 +39,23 @@ h1 {
   background-color: #f7b9a1; /* your custom color */
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.dropdown-menu {
+  /* Position the dropdown to align right edge with the parent (icon) */
+  right: 0 !important; 
+  left: auto !important; 
+  max-width: 200px; 
+  max-height: 200px; 
+  overflow-y: auto; 
+  overflow-x: auto; 
+ 
+}
+
 .background-image {
     position: relative;
     width:100%;

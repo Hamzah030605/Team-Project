@@ -28,7 +28,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 px-3">
-        <!-- Dropdown example -->
+      
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="skincareDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Skincare
@@ -103,18 +103,24 @@
   </div> 
 
     <a href="#" class="nav-link" style="margin-left: 15px;">
-  <!-- Cart SVG icon -->
+  <!-- Cart  -->
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
       <path d="M0 1.5A.5.5 0 0 1 .5 1h1a.5.5 0 0 1 .485.379L2.89 5H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 14H4a.5.5 0 0 1-.491-.408L1.01 2H.5a.5.5 0 0 1-.5-.5zm3.14 4l1.25 6.25a.5.5 0 0 0 .491.375h8a.5.5 0 0 0 .491-.375L13.86 5H3.14z"/>
       </svg>
     </a>
 
-   <a href="#" class="nav-link" style="margin-left: 15px;">
-  <!-- Login SVG icon -->
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-      <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-    </svg>
-</a>
+   <div class="dropdown" style="display: inline-block; margin-left: 15px;">
+      <a href="#" class="nav-link dropdown-toggle" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
+        <!-- Account Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+        </svg>
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+        <li><a class="dropdown-item" href="#">Login</a></li>
+        <li><a class="dropdown-item" href="#">Register</a></li>
+      </ul>
+</div>
 </nav>
 
  <main>
