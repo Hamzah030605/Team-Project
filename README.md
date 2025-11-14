@@ -35,6 +35,16 @@ Collaborating
    ```bash
    git add .
    git commit -m "Description of your change"
+Database
+-------------
+
+
+[Serenique_Database_Schema_Initial_Submission.docx.pdf](https://github.com/user-attachments/files/23478777/Serenique_Database_Schema_Initial_Submission.docx.pdf)
+
+
+
+
+
 
 License
 -------
