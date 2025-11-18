@@ -1,44 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Serenique</title>
-  <link rel="icon" type="image/x-icon" href="logo.png">  
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="images/logo.png">  
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+ <link rel="stylesheet" href="style.css">
 
 </head>
-
 <body>
-  <!-- Header section -->
-  <header>
-    <h1>Serenique</h1>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
+  <header> 
+    <div class="logo-container d-flex align-items-center mb-3">
+      <img src="images/logo1.png" alt="Logo" class="logo-img" />
+  <h1>Serenique</h1>
+</div>
   </header>
 
-  <!-- Main content section -->
-  <main>
-    <section>
-      <h2>About</h2>
-      <p>This is a simple HTML page structure example.</p>
-    </section>
+<nav class="navbar navbar-expand-lg navbar-custom">
+  <div class="container-fluid px-0">
+    <a class="navbar-brand fw-semibold px-3" href="homepage.html">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 px-3">
+      
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="skincareDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Skincare
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="skincareDropdown">
+            <li><a class="dropdown-item" href="#">Face Scrub</a></li>
+            <li><a class="dropdown-item" href="#">Masks</a></li>
+            <li><a class="dropdown-item" href="#">Creams</a></li>
+            <li><a class="dropdown-item" href="#">Cleanser</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="makeupDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Makeup
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="makeupDropdown">
+            <li><a class="dropdown-item" href="#">Foundation</a></li>
+            <li><a class="dropdown-item" href="#">Lipsticks</a></li>
+            <li><a class="dropdown-item" href="#">Highlighter Palette</a></li>
+            <li><a class="dropdown-item" href="#">Concealer</a></li>
+          </ul>
+        </li>
+
+        
+      <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Haircare
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Shampoo and Conditioner set</a></li>
+              <li><a class="dropdown-item" href="#">Hair Serum</a></li>
+              <li><a class="dropdown-item" href="#">Curl Cream</a></li>
+              <li><a class="dropdown-item" href="#">Heat Protectant</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Beauty & Tools
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Brushes</a></li>
+              <li><a class="dropdown-item" href="#">Sponges</a></li>
+              <li><a class="dropdown-item" href="#">Curler</a></li>
+              <li><a class="dropdown-item" href="#">Jade Roller Set</a></li>
+            </ul>
+          </li>
+
+           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Bath and Body
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Body Scrub</a></li>
+              <li><a class="dropdown-item" href="#">Body Lotion</a></li>
+              <li><a class="dropdown-item" href="#">Bath Salts</a></li>
+              <li><a class="dropdown-item" href="#">Hand Cream</a></li>
+            </ul>
+          </li>
+      
+    
+      </ul>
+
+
+      <!-- Search form -->
+      <form class="d-flex px-3" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search Products" aria-label="Search" />
+        <button class="btn btn-warning text-dark fw-semibold" style="background-color: #b76d51; border-color: #DEB887;"type="submit">Search</button>
+      </form>
+    </div>
+  </div> 
+
+    <a href="#" class="nav-link" style="margin-left: 15px;">
+  <!-- Cart  -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M0 1.5A.5.5 0 0 1 .5 1h1a.5.5 0 0 1 .485.379L2.89 5H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 14H4a.5.5 0 0 1-.491-.408L1.01 2H.5a.5.5 0 0 1-.5-.5zm3.14 4l1.25 6.25a.5.5 0 0 0 .491.375h8a.5.5 0 0 0 .491-.375L13.86 5H3.14z"/>
+      </svg>
+    </a>
+
+   <div class="dropdown" style="display: inline-block; margin-left: 15px;">
+      <a href="#" class="nav-link dropdown-toggle" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
+        <!-- Account Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+        </svg>
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+        <li><a class="dropdown-item" href="#">Login</a></li>
+        <li><a class="dropdown-item" href="#">Register</a></li>
+      </ul>
+</div>
+</nav>
+
+ <main>
+    <div class="background-image">
+        <img src="images/aboutUs.jpeg" alt="aboutus" />
+        <!--https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.tigren.com%2Fblog%2Fcreate-cosmetics-ecommerce-website%2F&psig=AOvVaw2SzoiNXpK0gd6WFiIOxqzj&ust=1762527467209000&source=images&cd=vfe&opi=89978449&ved=0CBkQjhxqFwoTCIiZnNPk3ZADFQAAAAAdAAAAABAE-->
+      </div>
+    
+      <br><br>
+
 
     <section>
-      <h2>Content</h2>
-      <p>You can add more sections or articles as needed.</p>
+      <h2>Top Catagories</h2>
+      <br><br>
+      <br><br>
+      <p> pictures and info about top catagoires pick 3</p>
     </section>
   </main>
+  <br><br><br><br>
 
   <!-- Footer section -->
   <footer>
-    <p>&copy; 2025 My Website. All rights reserved.</p>
+    <p>&copy; 2025 Serenique. All rights reserved.</p>
   </footer>
 
-    </body>
+</body>
 </html>
