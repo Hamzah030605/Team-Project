@@ -493,16 +493,16 @@ input, textarea {
     border: 1px solid #ccc;
 }
 
-.contact-btn {
+#contact-btn {
     margin-top: 20px;
     width: 100%;
     padding: 12px;
-    background: linear-gradient(to right, #ff9966, #ff5e62);
-    border: none;
-    color: #fff;
     font-size: 16px;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
+    background-color: #f7b9a1;
+    color: #b76d51;
+    border-color: #f7b9a1;
 }
 
 .contact-btn:hover {

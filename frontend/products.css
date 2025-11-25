@@ -1,0 +1,172 @@
+/* --- Global & Fonts --- */
+main {
+  width: 95%;
+}
+
+h1 {
+  color: #ed9b6b;
+  font-size: 2.5rem;     
+  font-weight: 600; 
+  margin: 0;
+}
+
+button {
+  border-radius: 8px;
+  background-color: #f7b9a1;
+  color: #b76d51;
+  border-color: #f7b9a1;
+}
+
+.art-container{
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  height: max-content;
+  padding-top: 1px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+/**/
+/* Parallel Boxes */
+/**/
+
+.main {
+  padding: 10px;
+  float: inline-start;
+  width: 72.5%; 
+}
+.right {
+  padding: 10px;
+  float: inline-end;
+  width: 25%;
+}
+
+@media screen and (max-width: 800px) {
+  .main, .right {
+    width: 100%;
+  }
+}
+
+/**/
+/* Image Slide Show */
+/**/
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+.mySlidesImgs {
+  max-height: 250px;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 7px;
+  width: 7px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+/**/
+/* Similar Products */
+/**/
+
+.thumbnail img {
+  width: 100px;
+  height: 100px;
+}
+
+.thumbnail a {
+  color: black;
+  text-decoration: none;
+}
+
+.thumbnail  {
+  display:inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.thumbnail p {
+  transition: transform .2s;
+}
+
+.thumbnail p:hover {
+  transform:scale(2);
+  display: flex;
+  justify-content: center;
+}
+
+/**/
+/* Ratings */
+/**/
+
+#reviews_Img img, #reviews_Text img{
+  max-width: 20%;
+}
