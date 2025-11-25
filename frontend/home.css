@@ -1,0 +1,262 @@
+/* --- Global & Fonts --- */
+body {
+  background-color: rgb(253, 248, 245); 
+  font-family: "Poppins", sans-serif;
+}
+
+/* Use Serif font for Headings for a premium feel */
+h1, h2, h3, .section-title {
+  font-family: "Playfair Display", serif;
+}
+
+/* --- Header & Logo --- */
+header {
+  background-color: rgb(253, 248, 245);
+}
+
+h1 {
+  color: #ed9b6b;
+  font-size: 2.5rem;     
+  font-weight: 600; 
+  margin: 0;
+}
+
+.logo-img {
+  width: 60px; 
+  height: auto;
+}
+
+/* --- Navigation Bar --- */
+.navbar-custom {
+  background-color: #f7b9a1; 
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); 
+}
+
+.navbar-nav .nav-link {
+  color: #5a3e36 !important; 
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #000 !important;
+}
+
+/* Dropdown Tweaks */
+.dropdown-menu {
+  background-color: #fff0e9;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Search Bar Styling */
+.search-form {
+    --bs-form-control-bg: #fff0e9; 
+    --bs-form-control-border-color: rgba(0, 0, 0, 0.1);
+}
+.search-form .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.btn-search {
+  background-color: #b76d51;
+  color: white;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border: none;
+  margin-left: -1px; 
+}
+.btn-search:hover {
+  background-color: #8a4a32; 
+  color: white;
+}
+
+/* Nav Icons */
+.nav-icon {
+  color: #5a3e36;
+  transition: color 0.3s;
+}
+.nav-icon:hover {
+  color: #000;
+}
+
+.no-arrow::after {
+  display: none;
+}
+
+/* --- Hero Section --- */
+.background-image {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.bg-img-file {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.2); 
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    padding: 20px;
+}
+
+/* Hero Text Shadow for better contrast */
+.hero-title-shadow {
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+.hero-text-shadow {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Hero CTA Hover Effect */
+.hero-cta-btn:hover {
+    background-color: #b76d51; 
+    color: white !important;
+    border-color: #b76d51;
+}
+
+/* --- Categories Section --- */
+.section-title {
+  color: #b76d51;
+  font-size: 2.2rem;
+}
+
+.category-card {
+  transition: transform 0.3s ease;
+  padding: 10px;
+}
+
+.category-card:hover {
+  transform: translateY(-5px); 
+}
+
+/* Ensure images are perfect circles */
+.img-wrapper img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border: 5px solid white; 
+}
+
+.category-card h4 {
+  margin-top: 15px;
+  color: #5a3e36;
+}
+
+/* --- PROMO BANNER CAROUSEL STYLES --- */
+
+.promo-banner-section {
+    padding-top: 0 !important; 
+    padding-bottom: 0 !important;
+    margin: 3rem 0; 
+}
+
+.promo-slide {
+    height: 450px; 
+    position: relative;
+}
+
+/* Custom background for slide 1 (Mint/Teal) */
+.promo-holiday-theme {
+    background-color: #79D6D6; 
+}
+
+/* Custom background for slide 2 (Example: Pink Sale) */
+.promo-sale-theme {
+    background-color: #f7b9a1; 
+}
+
+.promo-content-wrapper {
+    height: 100%;
+}
+
+.promo-text-container {
+    padding: 20px;
+    z-index: 10;
+}
+
+.promo-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: #1a1a1a; 
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.promo-description {
+    color: #333;
+    max-width: 90%;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+/* Styling the CTA button to be black/sharp edges */
+.promo-cta-btn {
+    background-color: #000 !important;
+    border-radius: 0 !important; 
+    color: white !important;
+    font-weight: 600;
+}
+.promo-cta-btn:hover {
+    background-color: #333 !important;
+}
+
+/* Hiding product image on small screens */
+.promo-product-image {
+    max-height: 400px;
+    object-fit: contain;
+}
+
+/* Override Bootstrap carousel controls to be subtle/white */
+#promoCarousel .carousel-control-prev-icon,
+#promoCarousel .carousel-control-next-icon {
+    filter: invert(100%); 
+    background-color: transparent;
+}
+
+
+/* =========================================
+   HOVER DROPDOWN LOGIC
+   ========================================= */
+
+@media (min-width: 992px) {
+  
+    .navbar-nav .nav-item.dropdown:hover .dropdown-menu {
+      display: block;
+      margin-top: 0;
+    }
+  
+    .navbar-nav .dropdown-menu {
+      display: none;
+      animation: fadeIn 0.3s;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Lotus</title>
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <link rel="stylesheet" href="auth.css">
+
+  <section class="auth-section">
+    <div class="auth-container">
+      <div class="auth-card">
+
+        <div class="auth-left">
+          <div class="auth-content">
+            <div class="logo">
+              <a href="homepage.html">
+                <img src="images/logo2.png" alt="Serenique Logo" class="logo-img" />
+              </a>
+              <h2>Welcome Back</h2> 
+            </div>
+
+            <form class="auth-form" action="register.php" method="POST">
+              <h3>Create Your Account</h3>
+
+              <label for="username">Username</label>
+              <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+              <button type="submit" class="btn-primary">Register</button>
+
+              <p class="small-text">
+                Already have an account? <a href="login.html">Login here</a>
+              </p>
+            </form>
+          </div>
+        </div>
+
+        <div class="auth-right">
+          <div class="overlay-text">
+            <h3>We are more than just a company</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
