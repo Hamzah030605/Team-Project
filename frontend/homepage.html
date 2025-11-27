@@ -12,8 +12,9 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-  <link rel="stylesheet" href="home.css">
+  <script src="theme-toggle.js"></script> <link rel="stylesheet" href="home.css">
+  <script src="home.js"></script> 
+</body>
 </head>
 <body>
 
@@ -37,6 +38,8 @@
         
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link active" href="homepage.html">Home</a></li>
+
+          <li class="nav-item"><a class="nav-link active" href="aboutUs.html">About Us</a></li>
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Skincare</a>
@@ -44,9 +47,9 @@
               <li><a class="dropdown-item" href="#">Face Scrub</a></li>
               <li><a class="dropdown-item" href="#">Masks</a></li>
               <li><a class="dropdown-item" href="#">Creams</a></li>
-              <li><a class="dropdown-item" href="#">Cleanser</a></li>
+              <li><a class="dropdown-item" href="#">Cleansers</a></li>
             </ul>
-          </li>
+          </li> 
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Makeup</a>
@@ -62,6 +65,8 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Shampoo</a></li>
               <li><a class="dropdown-item" href="#">Serums</a></li>
+              <li><a class="dropdown-item" href="#">Protectants</a></li>
+
             </ul>
           </li>
 
@@ -70,9 +75,21 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Scrubs</a></li>
               <li><a class="dropdown-item" href="#">Lotions</a></li>
+              <li><a class="dropdown-item" href="#">Salts</a></li>
             </ul>
           </li>
-        </ul>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Tools</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Brush Set</a></li>
+              <li><a class="dropdown-item" href="#">Sponges</a></li>
+              <li><a class="dropdown-item" href="#">Curler</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a class="nav-link active" href="contactUs.html">Contact Us</a></li>
+          </ul>
 
         <div class="d-flex align-items-center gap-3">
           <form class="d-flex search-form" role="search">
@@ -84,23 +101,30 @@
             </button>
           </form>
 
-          <a href="#" class="nav-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M0 1.5A.5.5 0 0 1 .5 1h1a.5.5 0 0 1 .485.379L2.89 5H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 14H4a.5.5 0 0 1-.491-.408L1.01 2H.5a.5.5 0 0 1-.5-.5zm3.14 4l1.25 6.25a.5.5 0 0 0 .491.375h8a.5.5 0 0 0 .491-.375L13.86 5H3.14z"/>
-            </svg>
-          </a>
-
-          <div class="dropdown">
-            <a href="#" class="nav-icon dropdown-toggle no-arrow" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-              </svg>
+            <button id="mode-toggle" class="btn p-0 border-0" aria-label="Toggle Light and Dark Mode">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                    <path id="moon-icon" d="M6 .278a.76.76 0 0 0-.154.198 2.035 2.035 0 0 0 .981 3.511 2.035 2.035 0 0 1 .981 3.511C3.896 9.47 2.1 6.255 2.1 4.793c0-2.208 1.62-3.801 3.488-3.995a.76.76 0 0 0 .312-.511.76.76 0 0 0-.012-.416C5.69 0 5.4 0 5.104 0h-.002zm1.884 7.29a.76.76 0 0 0-.154.198 2.035 2.035 0 0 0 .981 3.511 2.035 2.035 0 0 1 .981 3.511c-2.43 1.25-4.576.994-5.892-.093a.76.76 0 0 0-.012-.416C4.42 16 4.124 16 3.828 16h-.002z"/>
+                    <path id="sun-icon" class="d-none" fill-rule="evenodd" d="M10.5 7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2a.5.5 0 0 1 .5-.5zm.5 4.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zM4 11.5a.5.5 0 0 0 0 1H2a.5.5 0 0 0 0-1h2zM7.5 3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zM4.5 4a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zM4.5 8a.5.5 0 0 1 0 1h2a.5.5 0 0 1 0-1h-2zM7.5 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 7.5 0z"/>
+                </svg>
+            </button>
+            
+            <a href="cart.html" class="nav-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 2l1.5 4h9L18 2H6zM3 6h18l-1.5 14H4.5L3 6z"/>
+                </svg>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
-              <li><a class="dropdown-item" href="login.html">Login</a></li>
-              <li><a class="dropdown-item" href="register.html">Register</a></li>
-              </ul>
-          </div>
+
+            <div class="dropdown">
+                <a href="#" class="nav-icon dropdown-toggle no-arrow" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                  </svg>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
+                  <li><a class="dropdown-item" href="login.html">Login</a></li>
+                  <li><a class="dropdown-item" href="register.html">Register</a></li>
+                </ul>
+            </div>
         </div>
       </div>
     </div> 
@@ -176,33 +200,39 @@
         
         <div class="row g-4 justify-content-center">
             <div class="col-md-4 col-sm-6">
-                <div class="category-card text-center">
-                    <div class="img-wrapper mb-3">
-                        <img src="images/skincare.png" alt="Skincare" class="img-fluid rounded-circle shadow-sm">
+                <a href="productpage.html" class="category-link">
+                    <div class="category-card text-center">
+                        <div class="img-wrapper mb-3">
+                            <img src="images/skincare.png" alt="Skincare" class="img-fluid rounded-circle shadow-sm">
+                        </div>
+                        <h4 class="fw-semibold">Skincare</h4>
+                        <span class="btn btn-link text-dark text-decoration-none">Shop Now &rarr;</span>
                     </div>
-                    <h4 class="fw-semibold">Skincare</h4>
-                    <a href="#" class="btn btn-link text-dark text-decoration-none">Shop Now &rarr;</a>
-                </div>
+                </a>
             </div>
             
             <div class="col-md-4 col-sm-6">
-                <div class="category-card text-center">
-                    <div class="img-wrapper mb-3">
-                        <img src="images/makeup.png" alt="Makeup" class="img-fluid rounded-circle shadow-sm">
+                <a href="productpage.html" class="category-link">
+                    <div class="category-card text-center">
+                        <div class="img-wrapper mb-3">
+                            <img src="images/makeup.png" alt="Makeup" class="img-fluid rounded-circle shadow-sm">
+                        </div>
+                        <h4 class="fw-semibold">Makeup</h4>
+                        <span class="btn btn-link text-dark text-decoration-none">Shop Now &rarr;</span>
                     </div>
-                    <h4 class="fw-semibold">Makeup</h4>
-                    <a href="#" class="btn btn-link text-dark text-decoration-none">Shop Now &rarr;</a>
-                </div>
+                </a>
             </div>
             
             <div class="col-md-4 col-sm-6">
-                <div class="category-card text-center">
-                    <div class="img-wrapper mb-3">
-                        <img src="images/tools.png" alt="Tools" class="img-fluid rounded-circle shadow-sm">
+                <a href="productpage.html" class="category-link">
+                    <div class="category-card text-center">
+                        <div class="img-wrapper mb-3">
+                            <img src="images/tools.png" alt="Tools" class="img-fluid rounded-circle shadow-sm">
+                        </div>
+                        <h4 class="fw-semibold">Tools</h4>
+                        <span class="btn btn-link text-dark text-decoration-none">Shop Now &rarr;</span>
                     </div>
-                    <h4 class="fw-semibold">Tools</h4>
-                    <a href="#" class="btn btn-link text-dark text-decoration-none">Shop Now &rarr;</a>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -210,9 +240,22 @@
 
   <br><br>
 
-  <footer class="text-center py-4" style="background-color: #e8dcd5;">
+  <footer class="text-center py-4" style="background-color: var(--navbar-bg);">
     <p class="m-0 text-muted">&copy; 2025 Serenique. All rights reserved.</p>
   </footer>
+
+  <div id="ai-assistant-widget">
+    <button id="open-chat-btn" aria-label="Open AI Assistant Chat">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" viewBox="0 0 16 16">
+            <path d="M12.79 5.862c-.643-.177-1.393.382-1.393.382a.571.571 0 0 1-.58.156c-2.315-1.1-4.7-1.886-6.42-1.868a.747.747 0 0 0-.796.757c.078.293.351.488.665.488a.742.742 0 0 0 .546-.192c1.764-1.04 4.073-.703 5.922.868.21.18.529.076.592-.149.073-.255-.084-.52-.395-.56zM8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0z"/>
+        </svg>
+    </button>
+    <div id="chat-window" style="display: none;">
+        <header>Serenique Assistant</header>
+        <div id="messages">Welcome! How can I help you find your perfect product?</div>
+        <input type="text" placeholder="Ask a question..." />
+    </div>
+</div>
 
 </body>
 </html>
