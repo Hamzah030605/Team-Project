@@ -1,3 +1,10 @@
+//Add description
+function addDescription(des) {
+    let proDes = document.getElementById('productDescriptionID');
+    proDes.innerHTML = "";
+    proDes.appendChild(document.createTextNode(des));
+}
+
 // Ratings Functions
 function starRating(value) {
     var averageRate = Math.round(value * 2) / 2;
@@ -66,11 +73,11 @@ function showSlides(n) {
         slides[i].style.display = "none";
     }
     for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
+        dots[i].className = dots[i].className.replace(" dotActive", "");
     }
 
     slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
+    dots[slideIndex - 1].className += " dotActive";
 }
 
 function startAutoPlay() {
@@ -83,17 +90,52 @@ function stopAutoPlay() {
 
 // Run when page loads
 document.addEventListener("DOMContentLoaded", function() {
+    //
     //For demo purposes
+    //
+    //Pro Des
+    addDescription("Nestled between rolling emerald hills and a shimmering lake, the view unfolds like a painted masterpiece. Golden sunlight dances across the water’s surface, casting ripples of light that glisten like scattered diamonds. Towering trees sway gently in the breeze, their leaves whispering secrets of the forest. In the distance, snow-capped peaks pierce the sky, their majestic silhouettes softened by a veil of mist. Wildflowers bloom in vibrant clusters along the winding path, adding bursts of color to the tranquil scene. The air is crisp and fragrant, filled with birdsong and serenity—a perfect harmony of nature’s finest elements, inviting peaceful reflection.");
+    //Reviews
     averageRate();
     reviewText('Olivia Brown', 4.8, 'This liquid foundation is amazing! It blends seamlessly, gives a natural glow, and lasts all day without feeling heavy.');
     reviewText('Hannah Wilson', 3.5, 'The eyeshadow palette has gorgeous shades, but some colors don’t have great pigmentation. Works well with primer though.');
     reviewText('Sophia Martinez', 5.0, 'Absolutely love this matte lipstick! The color payoff is incredible, it doesn’t dry my lips, and it stays put even after eating.');
 
+    //
     //Image Slideshow
+    //
     showSlides(slideIndex);
     startAutoPlay();
 
     let slideshow = document.querySelector(".slideshow-container");
     slideshow.addEventListener("mouseenter", stopAutoPlay);
     slideshow.addEventListener("mouseleave", startAutoPlay);
+
+
+    //Modal setup
+    const modal = document.getElementById("imgModal");
+    const modalImg = document.getElementById("modalImg");
+    const captionText = document.getElementById("caption");
+    const closeBtn = document.querySelector(".close");
+    const navBar = document.getElementById("navBarID")
+
+    document.querySelectorAll(".mySlidesImgs").forEach(img => {
+        img.addEventListener("click", () => {
+            modal.style.display = "block";
+            modalImg.src = img.src;
+            //captionText.innerHTML = img.alt || img.id;
+            navBar.style.display = "none";
+        });
+    });
+    closeBtn.onclick = () => {
+        modal.style.display = "none";
+        navBar.style.display = "block";
+    };
+
+    modal.onclick = (e) => {
+        if (e.target === modal) {
+            modal.style.display = "none";
+            navBar.style.display = "block";
+        }
+    };
 });
