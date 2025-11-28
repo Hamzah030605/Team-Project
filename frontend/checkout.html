@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Serenique</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="theme-toggle.js"></script>
+
+    <style>
+        /* --- CSS Theme Variables (Must match home.css :root) --- */
+        :root {
+            --bg-color: #ffffff;             /* Main background: White (closest to #fffbf9) */
+            --text-color: #5a3e36;           /* Main text: Dark Brown */
+            --primary-color: #ed9b6b;        /* Accent color: Serenique Orange */
+            --header-bg: #f8f4f2;            /* Header/Card Background */
+            --navbar-bg: #f7b9a1;            /* Primary Peach/Navigation Background */
+            --secondary-bg: #fff0e9;         /* Light Secondary Background */
+            --link-hover: #000;              /* General link hover color */
+            --search-btn-bg: #b76d51;        /* Accent Terracotta */
+            --search-btn-hover-bg: #8a4a32;  /* Dark Brown Hover */
+            --shadow-color: rgba(0,0,0,0.1);
+        }
+
+        body.dark-mode {
+            --bg-color: #1c1f23;
+            --text-color: #e8dcd5;
+            --primary-color: #ffb991;
+            --header-bg: #2d333b;
+            --navbar-bg: #404854;
+            --secondary-bg: #4b5463;
+            --link-hover: #ffffff;
+            --search-btn-bg: #ed9b6b;
+            --search-btn-hover-bg: #ffb991;
+            --shadow-color: rgba(255,255,255,0.1);
+        }
+
+        /* Apply variables to fundamental elements */
+        body {
+            font-family: var(--body-font);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        h1, h2, h3 {
+            font-family: var(--heading-font);
+        }
+        
+        /* Custom Theme Classes for Tailwind Overrides */
+        .text-theme-accent { color: var(--search-btn-bg); }
+        .text-theme-dark { color: var(--text-color); }
+        .bg-theme-card { background-color: var(--header-bg); }
+        .border-theme-light { border-color: var(--navbar-bg); }
+        .btn-checkout {
+            background-color: var(--search-btn-bg);
+            transition: background-color 0.3s;
+        }
+        .btn-checkout:hover {
+            background-color: var(--search-btn-hover-bg);
+        }
+        /* Style for inputs */
+        .theme-input {
+            background-color: var(--secondary-bg);
+            border-color: var(--navbar-bg);
+            color: var(--text-color);
+        }
+        .theme-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 1px var(--primary-color);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="py-6 border-b border-theme-light bg-theme-card shadow-sm">
+        <div class="container mx-auto max-w-7xl px-4 flex justify-between items-center">
+            <a href="homepage.html" class="flex items-center space-x-3">
+                <img src="images/logo2.png" alt="Serenique Logo" class="w-8 h-8">
+                <h1 class="text-3xl font-semibold text-theme-accent" style="font-family: var(--heading-font);">Serenique</h1>
+            </a>
+            <div class="flex items-center space-x-4">
+                 <button id="mode-toggle" class="btn p-0 border-0 text-theme-dark hover:text-theme-accent" aria-label="Toggle Light and Dark Mode">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                        <path id="moon-icon" d="M6 .278a.76.76 0 0 0-.154.198 2.035 2.035 0 0 0 .981 3.511 2.035 2.035 0 0 1 .981 3.511C3.896 9.47 2.1 6.255 2.1 4.793c0-2.208 1.62-3.801 3.488-3.995a.76.76 0 0 0 .312-.511.76.76 0 0 0-.012-.416C5.69 0 5.4 0 5.104 0h-.002zm1.884 7.29a.76.76 0 0 0-.154.198 2.035 2.035 0 0 0 .981 3.511 2.035 2.035 0 0 1 .981 3.511c-2.43 1.25-4.576.994-5.892-.093a.76.76 0 0 0-.012-.416C4.42 16 4.124 16 3.828 16h-.002z"/>
+                        <path id="sun-icon" class="d-none" fill-rule="evenodd" d="M10.5 7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2a.5.5 0 0 1 .5-.5zm.5 4.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zM4 11.5a.5.5 0 0 0 0 1H2a.5.5 0 0 0 0-1h2zM7.5 3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zM4.5 4a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zM4.5 8a.5.5 0 0 1 0 1h2a.5.5 0 0 1 0-1h-2zM7.5 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 7.5 0z"/>
+                    </svg>
+                </button>
+                <div class="text-sm text-theme-dark hidden sm:block">
+                    Secure Checkout
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-7xl px-4 py-12">
+        <div class="lg:flex lg:gap-10">
+
+            <div class="lg:w-3/5">
+                <h2 class="text-3xl font-semibold mb-8 text-theme-accent">Your Information</h2>
+
+                <div class="bg-theme-card p-6 mb-8 rounded-lg shadow-md border border-theme-light/50">
+                    <h3 class="text-xl font-semibold mb-4 border-b pb-2 text-theme-dark">1. Contact & Shipping</h3>
+                    <form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-theme-dark/70 mb-1">Email Address</label>
+                                <input type="email" id="email" name="email" required placeholder="name@example.com"
+                                       class="w-full p-2 border rounded-lg focus:ring-1 theme-input">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-theme-dark/70 mb-1">Phone Number (Optional)</label>
+                                <input type="tel" id="phone" name="phone" placeholder="(555) 555-5555"
+                                       class="w-full p-2 border rounded-lg focus:ring-1 theme-input">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label for="first_name" class="block text-sm font-medium text-theme-dark/70 mb-1">First Name</label>
+                                <input type="text" id="first_name" name="first_name" required
+                                       class="w-full p-2 border rounded-lg focus:ring-1 theme-input">
+                            </div>
+                            <div>
+                                <label for="last_name" class="block text-sm font-medium text-theme-dark/70 mb-1">Last Name</label>
+                                <input type="text" id="last_name" name="last_name" required
+                                       class="w-full p-2 border rounded-lg focus:ring-1 theme-input">
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="address" class="block text-sm font-medium text-theme-dark/70 mb-1">Street Address</label>
+                            <input type="text" id="address" name="address" required
+                                   class="w-full p-2 border rounded-lg focus:ring-1 theme-input">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label for="city" class="block text-sm font-medium text-theme-dark/70 mb-1">City</label>
+                                <input type="text" id="city" name="city" required
+                                       class="w-full p-2 border rounded-lg focus:ring-1 theme-input">
+                            </div>
+                            <div>
+                                <label for="state" class="block text-sm font-medium text-theme-dark/70 mb-1">State / Province</label>
+                                <input type="text" id="state" name="state" required
+                                       class="w-full p-2 border rounded-lg focus:ring-1 theme-input">
+                            </div>
+                            <div>
+                                <label for="zip" class="block text-sm font-medium text-theme-dark/70 mb-1">ZIP / Postal Code</label>
+                                <input type="text" id="zip" name="zip" required
+                                       class="w-full p-2 border rounded-lg focus:ring-1 theme-input">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="bg-theme-card p-6 mb-8 rounded-lg shadow-md border border-theme-light/50">
+                    <h3 class="text-xl font-semibold mb-4 border-b pb-2 text-theme-dark">2. Shipping Method</h3>
+                    <div class="space-y-4">
+                        <label class="flex items-center justify-between p-3 border rounded-lg cursor-pointer theme-input-radio border-theme-light/50 bg-theme-light/10">
+                            <span class="text-theme-dark font-medium">Standard Shipping (3-7 days)</span>
+                            <span class="font-bold text-theme-dark">FREE</span>
+                            <input type="radio" name="shipping" value="standard" checked class="h-4 w-4 text-theme-accent focus:ring-theme-accent">
+                        </label>
+                        <label class="flex items-center justify-between p-3 border rounded-lg cursor-pointer hover:border-theme-accent theme-input-radio">
+                            <span class="text-theme-dark font-medium">Express Shipping (1-2 days)</span>
+                            <span class="font-bold text-theme-dark">$15.00</span>
+                            <input type="radio" name="shipping" value="express" class="h-4 w-4 text-theme-accent focus:ring-theme-accent">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="bg-theme-card p-6 mb-8 rounded-lg shadow-md border border-theme-light/50">
+                    <h3 class="text-xl font-semibold mb-4 border-b pb-2 text-theme-dark">3. Payment Information</h3>
+                    <form>
+                        <div class="mb-4">
+                            <label for="card_name" class="block text-sm font-medium text-theme-dark/70 mb-1">Name on Card</label>
+                            <input type="text" id="card_name" name="card_name" required
+                                   class="w-full p-2 border rounded-lg focus:ring-1 theme-input">
+                        </div>
+                        <div class="mb-4">
+                            <label for="card_number" class="block text-sm font-medium text-theme-dark/70 mb-1">Card Number</label>
+                            <input type="text" id="card_number" name="card_number" required placeholder="XXXX XXXX XXXX XXXX"
+                                   class="w-full p-2 border rounded-lg focus:ring-1 theme-input">
+                        </div>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="col-span-2">
+                                <label for="expiry" class="block text-sm font-medium text-theme-dark/70 mb-1">Expiration Date (MM/YY)</label>
+                                <input type="text" id="expiry" name="expiry" required placeholder="MM / YY"
+                                       class="w-full p-2 border rounded-lg focus:ring-1 theme-input">
+                            </div>
+                            <div>
+                                <label for="cvv" class="block text-sm font-medium text-theme-dark/70 mb-1">CVV</label>
+                                <input type="text" id="cvv" name="cvv" required placeholder="123"
+                                       class="w-full p-2 border rounded-lg focus:ring-1 theme-input">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="lg:w-2/5 mt-10 lg:mt-0">
+                <div class="sticky top-10 bg-theme-card p-6 rounded-lg shadow-xl border border-theme-light/50">
+                    <h3 class="text-xl font-semibold mb-6 border-b pb-3 text-theme-dark">Order Summary</h3>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://placehold.co/60x60/f7b9a1/FFFFFF?text=P1" alt="Product Image" class="w-16 h-16 object-cover rounded-md border border-theme-light">
+                                <div>
+                                    <p class="font-medium text-theme-dark">Rose Hydrating Cream</p>
+                                    <p class="text-sm text-theme-dark/70">Qty: 1</p>
+                                </div>
+                            </div>
+                            <p class="font-semibold text-theme-dark">$32.00</p>
+                        </div>
+
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://placehold.co/60x60/f7b9a1/FFFFFF?text=P2" alt="Product Image" class="w-16 h-16 object-cover rounded-md border border-theme-light">
+                                <div>
+                                    <p class="font-medium text-theme-dark">Natural Finish Foundation</p>
+                                    <p class="text-sm text-theme-dark/70">Qty: 2</p>
+                                </div>
+                            </div>
+                            <p class="font-semibold text-theme-dark">$57.00</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 border-t border-theme-light pt-4">
+                        <div class="flex justify-between text-sm text-theme-dark/70">
+                            <span>Subtotal</span>
+                            <span>$89.00</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-theme-dark/70">
+                            <span>Shipping</span>
+                            <span>Free</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-theme-dark/70">
+                            <span>Tax (Estimated)</span>
+                            <span>$4.50</span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center border-t border-theme-light mt-4 pt-4">
+                        <span class="text-lg font-bold text-theme-dark">Order Total</span>
+                        <span class="text-2xl font-extrabold text-theme-accent">$93.50</span>
+                    </div>
+
+                    <button type="submit" class="btn-checkout w-full py-3 mt-6 text-white font-semibold rounded-lg shadow-md">
+                        Place Order - $93.50
+                    </button>
+
+                    <p class="text-xs text-center text-theme-dark/70 mt-3">
+                        By placing this order, you agree to the Terms and Conditions.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="text-center py-4 border-t border-theme-light/50 bg-theme-card">
+        <p class="text-sm text-theme-dark/70">&copy; 2025 Serenique. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

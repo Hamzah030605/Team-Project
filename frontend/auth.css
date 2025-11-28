@@ -1,171 +1,205 @@
+/* Register and Login Page Styles */
 
-/* Register page */
+/* Base reset using theme variables */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
-  }
-  
-  body {
-    background-color: #fafafa;
+}
+
+body {
+    background-color: var(--bg-color); /* Uses theme background */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-  }
-  
-  .auth-section {
+    transition: background-color 0.3s;
+}
+
+.auth-section {
     width: 100%;
     padding: 40px 0;
-  }
-  
-  .auth-container {
+}
+
+.auth-container {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .auth-card {
+}
+
+.auth-card {
     display: flex;
     flex-direction: row;
-    background: #fff;
+    background: var(--header-bg); /* Uses theme card background */
     border-radius: 12px;
     overflow: hidden;
     max-width: 900px;
     width: 100%;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Left side - form */
-  .auth-left {
+    box-shadow: 0 10px 25px var(--shadow-color); /* Uses theme shadow variable */
+}
+
+/* Left side - form */
+.auth-left {
     flex: 1;
     padding: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .auth-content {
+}
+
+.auth-content {
     width: 100%;
     max-width: 350px;
-  }
-  
-  .logo {
+}
+
+.logo {
     text-align: center;
     margin-bottom: 30px;
-  }
-  
-  .logo img {
-    width: 120px;
+}
+
+.logo img {
+    width: 50px; /* Reduced size for consistency with other logos */
     height: auto;
     margin-bottom: 10px;
-  }
-  
-  .logo h2 {
+}
+
+.logo h2 {
     font-weight: 600;
-    color: #333;
-  }
-  
-  .auth-form {
+    color: var(--primary-color); /* Uses theme accent */
+}
+
+.auth-form {
     display: flex;
     flex-direction: column;
-  }
-  
-  .auth-form h3 {
+}
+
+.auth-form h3 {
     margin-bottom: 20px;
-    color: #444;
+    color: var(--primary-color);
     text-align: center;
-  }
-  
-  .auth-form label {
+    font-family: 'Playfair Display', serif;
+}
+
+.auth-form label {
     margin-bottom: 5px;
     font-weight: 500;
-    color: #555;
-  }
-  
-  .auth-form input {
+    color: var(--text-color);
+}
+
+.auth-form input {
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 6px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--navbar-bg); /* Uses light border color */
     outline: none;
     transition: border 0.3s ease;
-  }
-  
-  .auth-form input:focus {
-    border-color: #ff5e62;
-  }
-  
-  .btn-primary {
-    background: linear-gradient(to right, #ff9966, #ff5e62);
+    background-color: var(--secondary-bg); /* Uses theme input background */
+    color: var(--text-color);
+}
+
+.auth-form input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem var(--primary-color);
+}
+
+.btn-primary {
+    background-color: var(--search-btn-bg); /* Uses theme button color */
     color: white;
     border: none;
     border-radius: 6px;
     padding: 12px;
     font-size: 16px;
     cursor: pointer;
-    transition: opacity 0.3s ease;
-  }
-  
-  .btn-primary:hover {
-    opacity: 0.85;
-  }
-  
-  .small-text {
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--search-btn-hover-bg); /* Uses theme button hover color */
+}
+
+.small-text {
     text-align: center;
     margin-top: 15px;
     font-size: 14px;
-    color: #666;
-  }
-  
-  .small-text a {
-    color: #ff5e62;
+    color: var(--text-color);
+}
+
+.small-text a {
+    color: var(--primary-color);
     text-decoration: none;
-  }
-  
-  .small-text a:hover {
+}
+
+.small-text a:hover {
     text-decoration: underline;
-  }
-  
-  /* Right side - gradient */
-  .auth-right {
+}
+
+/* Right side - Illustrative image/text */
+.auth-right {
     flex: 1;
-    background: linear-gradient(to right, #ff9966, #ff5e62);
-    color: white;
+    /* Uses a placeholder background image from your project */
+    background: url('images/aboutUs.jpeg') center/cover no-repeat; 
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 40px;
-  }
-  
-  .overlay-text {
+}
+
+.auth-right::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.overlay-text {
     max-width: 300px;
-    text-align: left;
-  }
-  
-  .overlay-text h3 {
-    font-size: 22px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    color: white;
+}
+
+.overlay-text h3 {
+    font-size: 24px;
     margin-bottom: 15px;
-  }
-  
-  .overlay-text p {
+    color: white;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.overlay-text p {
     font-size: 14px;
     line-height: 1.6;
-  }
-  
-  /* Responsive design */
-  @media (max-width: 768px) {
+}
+
+/* Extra links for login page (Forgot Password) */
+.extra-links {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.extra-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+
+/* Responsive design */
+@media (max-width: 768px) {
     .auth-card {
       flex-direction: column;
+      max-width: 450px;
     }
   
     .auth-right {
-      display: none;
+      display: none; /* Hide illustrative side on small screens */
     }
   
     .auth-left {
-      padding: 20px;
+      padding: 30px;
     }
-  }
-  
+}

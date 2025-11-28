@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Serenique</title>
+        <title>Serenique | Product Detail</title>
         <link rel="icon" type="image/x-icon" href="images/logo2.png">  
         
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,11 +12,10 @@
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="products.js"></script>
-
+        
+        <script src="theme-toggle.js"></script> 
+        <script src="products.js"></script> <link rel="stylesheet" href="home.css">
         <link rel="stylesheet" href="products.css">
-        <link rel="stylesheet" href="home.css">
-        <style>h1,h2,h3,h4,h5 {color: #ed9b6b;}</style>
     </head>
 
     <body>
@@ -29,8 +28,7 @@
             </div>
         </header>
         
-        <!-- Nav Bar -->
-        <nav class="navbar navbar-expand-lg navbar-custom sticky-top" id="navBarID">
+        <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
             <div class="container">
                 <a class="navbar-brand fw-semibold d-lg-none" href="#">Menu</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,9 +38,8 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
                     
                     <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" href="homepage.html">Home</a></li>
-
-                    <li class="nav-item"><a class="nav-link active" href="aboutUs.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aboutUs.html">About Us</a></li>
                     
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Skincare</a>
@@ -50,7 +47,7 @@
                         <li><a class="dropdown-item" href="#">Face Scrub</a></li>
                         <li><a class="dropdown-item" href="#">Masks</a></li>
                         <li><a class="dropdown-item" href="#">Creams</a></li>
-                        <li><a class="dropdown-item" href="#">Cleanser</a></li>
+                        <li><a class="dropdown-item" href="#">Cleansers</a></li>
                         </ul>
                     </li>
 
@@ -68,8 +65,7 @@
                         <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Shampoo</a></li>
                         <li><a class="dropdown-item" href="#">Serums</a></li>
-                        <li><a class="dropdown-item" href="#">Protectant</a></li>
-
+                        <li><a class="dropdown-item" href="#">Protectants</a></li>
                         </ul>
                     </li>
 
@@ -82,7 +78,7 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown"> 
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Tools</a>
                         <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Brush Set</a></li>
@@ -91,7 +87,7 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item"><a class="nav-link active" href="contactUs.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contactUs.html">Contact Us</a></li>
                     </ul>
 
                     <div class="d-flex align-items-center gap-3">
@@ -103,9 +99,15 @@
                                 </svg>
                             </button>
                         </form>
+                        
+                        <button id="mode-toggle" class="btn p-0 border-0" aria-label="Toggle Light and Dark Mode">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                                <path id="moon-icon" d="M6 .278a.76.76 0 0 0-.154.198 2.035 2.035 0 0 0 .981 3.511 2.035 2.035 0 0 1 .981 3.511C3.896 9.47 2.1 6.255 2.1 4.793c0-2.208 1.62-3.801 3.488-3.995a.76.76 0 0 0 .312-.511.76.76 0 0 0-.012-.416C5.69 0 5.4 0 5.104 0h-.002zm1.884 7.29a.76.76 0 0 0-.154.198 2.035 2.035 0 0 0 .981 3.511 2.035 2.035 0 0 1 .981 3.511c-2.43 1.25-4.576.994-5.892-.093a.76.76 0 0 0-.012-.416C4.42 16 4.124 16 3.828 16h-.002z"/>
+                                <path id="sun-icon" class="d-none" fill-rule="evenodd" d="M10.5 7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2a.5.5 0 0 1 .5-.5zm.5 4.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zM4 11.5a.5.5 0 0 0 0 1H2a.5.5 0 0 0 0-1h2zM7.5 3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zM4.5 4a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zM4.5 8a.5.5 0 0 1 0 1h2a.5.5 0 0 1 0-1h-2zM7.5 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 7.5 0z"/>
+                            </svg>
+                        </button>
 
-                        <a href="cart.html" class="nav-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <a href="cart.html" class="nav-icon"> <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 2l1.5 4h9L18 2H6zM3 6h18l-1.5 14H4.5L3 6z"/>
                             </svg>
                         </a>
@@ -125,151 +127,128 @@
                 </div>
             </div> 
         </nav>
+        
+        <main class="container">
+            <div class="product-layout">
+                <section class="main-content">  
+                    <article class="art-container">
+                        <br>
+                        <h1>Rose Hydrating Serum</h1>
+                        <hr>
+                        <div class="d-flex flex-wrap">
+                            <section class="slideshow-wrapper">
+                                <div class="slideshow-container">
+                                    <div class="mySlides">
+                                        <div class="numbertext">1 / 5</div>
+                                        <img src="images/Serumv1.png" alt="Product Image 1" class="mySlidesImgs">
+                                    </div>
+                                    <div class="mySlides">
+                                        <div class="numbertext">2 / 5</div>
+                                        <img src="images/Serumv2.png" alt="Product Image 2" class="mySlidesImgs">
+                                    </div>
+                                    <div class="mySlides">
+                                        <div class="numbertext">3 / 5</div>
+                                        <img src="images/Serumv3.png" alt="Product Image 3" class="mySlidesImgs">
+                                    </div>
+                                    <div class="mySlides">
+                                        <div class="numbertext">4 / 5</div>
+                                        <img src="images/Serumv4.png" alt="Product Image 4" class="mySlidesImgs">
+                                    </div>
+                                    <div class="mySlides">
+                                        <div class="numbertext">5 / 5</div>
+                                        <img src="images/Serumv5.png" alt="Product Image 5" class="mySlidesImgs">
+                                    </div>
 
-        <!-- Main -->
-        <main>
-            <!-- Left Side Boxes -->
-            <section class="main">  
-                <article class="art-container">
-                    <!-- Product Name -->
-                    <h1 id="productNameID">Product Name</h1>
-                    <hr>
-                    <p>
-                        <!-- Image SlideShow -->
-                        <section style="width: 50%;" class="main">
-                            <!-- Slideshow container -->
-                            <div class="slideshow-container">
-
-                                <!-- Full-width images with number and caption text -->
-                                <div class="mySlides">
-                                    <div class="numbertext">1</div>
-                                    <img src="images/aboutUs.jpeg" class="mySlidesImgs" id="slidImgID1">
+                                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
                                 </div>
 
-                                <div class="mySlides">
-                                    <div class="numbertext">2</div>
-                                    <img src="images/logo2.png" class="mySlidesImgs" id="slidImgID2">
+                                <div class="dot-container">
+                                    <span class="dot" onclick="currentSlide(1)"></span>
+                                    <span class="dot" onclick="currentSlide(2)"></span>
+                                    <span class="dot" onclick="currentSlide(3)"></span>
+                                    <span class="dot" onclick="currentSlide(4)"></span>
+                                    <span class="dot" onclick="currentSlide(5)"></span>
                                 </div>
-
-                                <div class="mySlides">
-                                    <div class="numbertext">3</div>
-                                    <img src="images/makeup.png" class="mySlidesImgs" id="slidImgID3">
-                                </div>
-
-                                <div class="mySlides">
-                                    <div class="numbertext">4</div>
-                                    <img src="images/tools.png" class="mySlidesImgs" id="slidImgID4">
-                                </div>
-
-                                <div class="mySlides">
-                                    <div class="numbertext"></div>
-                                    <img src="images/logo.png" class="mySlidesImgs" id="slidImgID5">
-                                </div>
-
-                                <!-- Next and previous buttons -->
-                                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                            </div>
-                            <!-- The dots/circles -->
-                            <div style="text-align:center"> <!-- Remember to update for number of pictures -->
-                                <span class="dot" onclick="currentSlide(1)"></span>
-                                <span class="dot" onclick="currentSlide(2)"></span>
-                                <span class="dot" onclick="currentSlide(3)"></span>
-                                <span class="dot" onclick="currentSlide(4)"></span>
-                                <span class="dot" onclick="currentSlide(5)"></span>
-                            </div>
-                        </section>
-
-                        <!-- The Modal for slideshow -->
-                        <div id="imgModal" class="modal">
-                        <span class="close">&times;</span>
-                        <img class="modal-content" id="modalImg">
-                        <div id="caption"></div>
+                            </section>
+                            
+                            <aside class="product-description">
+                                <h3>Product Details</h3>
+                                <p id="productDescriptionID">
+                                    A lightweight, potent serum infused with organic rose hip oil and hyaluronic acid to deliver intense hydration and visibly smooth fine lines. Ideal for sensitive and dry skin seeking a youthful glow.
+                                </p>
+                                <ul class="product-features">
+                                    <li>100% Organic Ingredients</li>
+                                    <li>Cruelty-Free & Vegan</li>
+                                    <li>Non-Comedogenic Formula</li>
+                                </ul>
+                            </aside>
                         </div>
-
-                        <aside>
-                            <!-- Product Description -->
-                            <p id="productDescriptionID"></p>
-                            <br>
-                        </aside>
-                    </p>
-                </article> 
-                <br>
-
-                <!-- Product Reviews Section -->
-                <section class="art-container">
-                    <button type="button" onclick="location.href='productReview.html'" 
-                            id="addReview" class="RC_Button" style="float: inline-end;">
-                        Add Review
-                    </button>
-                    <h2>Reviews</h2>
-                    <!-- Average number stars -->
-                    <p id="reviews_Img"></p>
-                    <hr>
-                    <!-- All reviews -->
-                    <p id="reviews_Text"></p>
-                </section>      
-            </section>
-
-            <!-- Right Side Boxes -->
-             
-            <section class="right right-width">
-                <div class="art-container">
-                    <p id="costID">Cost</p>
+                    </article> 
                     <br>
-                    <p>Quickest Delivery: <p id="quickestDeliveryID"></p> </p>
-                    <p>Cheapest Delivery: <p id="cheapestDeliveryID"></p> </p>
-                    <br>
-                    <p><small>Number in Stock: <p id="stockID"></p> </small></p>
-                    <!-- Add to Cart -->
-                    <button type="button" onclick="alert('Added to Cart')" id="addToCartButtonID" class="RC_Button">
-                        Add to Cart
-                    </button>
-                    <hr>
-                    <small>
-                        <p>Courier: <p id="courierID"></p> </p>
-                        <p>Seller:  <p id="sellerID"></p>  </p>
-                    </small>
-                </div>
-            </section>
+                    <section class="art-container review-section">
+                        <button type="button" onclick="location.href='productReview.html'" 
+                                id="addReview" class="btn-add-to-cart float-end">
+                            Add Review
+                        </button>
+                        <h2>Customer Reviews</h2>
+                        <div id="reviews_Img" class="average-rating"></div>
+                        <hr>
+                        <div id="reviews_Text" class="review-list"></div>
+                    </section>      
+                </section>
 
-            <!-- Middle Boxes -->
-            <section class="right">
-                <!-- Similar Products -->
-                <div class="art-container thumbnail">
-                    <h2>Similar Products</h2>
-                    <p> <!-- For each of these just link to other products in the category-->
+                <section class="right-sidebar">
+                    <div class="art-container price-box">
+                        <br>
+                        <p class="cost-label">Price</p>
+                        <p id="costID" class="product-price">$39.99</p>
+                        <br>
+                        <p class="delivery-info">Quickest Delivery: <span id="quickestDeliveryID">2-3 Days (£5.00)</span></p>
+                        <p class="delivery-info">Cheapest Delivery: <span id="cheapestDeliveryID">5-7 Days (Free)</span></p>
+                        <br>
+                        <p class="stock-info"><small>Number in Stock: <span id="stockID">24</span></small></p>
+                        <button type="button" onclick="alert('Added to Cart')" id="addToCartButtonID" class="btn-add-to-cart">Add to Cart</button>
                         <hr>
-                        <p id="simProID1" class="thumbEnlarge">
-                            <a href="homepage.html"> 
-                                <img src="images/logo2.png">
-                                <span>Product Name Here</span>
-                            </a>
-                        </p>
+                        <small class="meta-info">
+                            <p>Courier: <span id="courierID">Royal Post</span> </p>
+                            <p>Seller:  <span id="sellerID">Serenique Store</span>  </p>
+                        </small>
+                    </div>
+
+                    <div class="art-container thumbnail-box">
+                        <h2>Similar Products</h2>
                         <hr>
-                        <p d="simProID2" class="thumbEnlarge">
-                            <a href="homepage.html"> 
-                                <img src="images/logo2.png">
-                                <span>Product Name Here</span>
-                            </a>
-                        </p>
-                        <hr>
-                        <p id="simProID3" class="thumbEnlarge">
-                            <a href="homepage.html"> 
-                                <img src="images/logo2.png">
-                                <span>Product Name Here</span>
-                            </a>
-                        </p>
-                        <hr>
-                    </p>
-                </div>
-            </section>
+                        <div class="thumbnail-grid">
+                            <p>
+                                <a href="productpage.html"> 
+                                    <img src="images/cleansingbalm.png" alt="Similar Product Cleanser">
+                                    <span class="product-name-link">Rose Cleansing Balm</span>
+                                </a>
+                            </p>
+                            <p>
+                                <a href="productpage.html">
+                                    <img src="images/faceroller.png" alt="Similar Product Roller">
+                                    <span class="product-name-link">Jade Face Roller</span>
+                                </a>
+                            </p>
+                            <p>
+                                <a href="productpage.html">
+                                    <img src="images/lipstick.png" alt="Similar Product Lipstick">
+                                    <span class="product-name-link">Sheer Matte Lipstick</span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </main>
-        <br><br>
-
-        <!-- Footer -->
-        <footer class="text-center py-4" style="background-color: #e8dcd5;">
-            <p class="m-0 text-muted">&copy; 2025 Serenique. All rights reserved.</p>
+        <footer class="text-center py-4" style="background-color: var(--navbar-bg);">
+            <p class="m-0" style="color: var(--text-color) !important;">&copy; 2025 Serenique. All rights reserved.</p>
         </footer>
+        <script>
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+        </script>
     </body>
 </html>

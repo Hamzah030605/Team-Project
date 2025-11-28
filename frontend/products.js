@@ -1,57 +1,70 @@
-//Add description
-function addDescription(des) {
-    let proDes = document.getElementById('productDescriptionID');
-    proDes.innerHTML = "";
-    proDes.appendChild(document.createTextNode(des));
-}
+// --- Review and Rating Functions ---
 
-// Ratings Functions
+// Function to convert numerical rating to Unicode stars
 function starRating(value) {
-    var averageRate = Math.round(value * 2) / 2;
-    const star = {
-        0   : 'images/starRating/0_Star.png',
-        0.5 : 'images/starRating/0.5_Star.png',
-        1   : 'images/starRating/1_Star.png',
-        1.5 : 'images/starRating/1.5_Star.png',
-        2   : 'images/starRating/2_Star.png',
-        2.5 : 'images/starRating/2.5_Star.png',
-        3   : 'images/starRating/3_Star.png',
-        3.5 : 'images/starRating/3.5_Star.png',
-        4   : 'images/starRating/4_Star.png',
-        4.5 : 'images/starRating/4.5_Star.png',
-        5   : 'images/starRating/5_Star.png',
-    };
-    return star[averageRate];
+    // Rounds to the nearest half star
+    const roundedRating = Math.round(value * 2) / 2;
+    let stars = '';
+    const fullStar = '★';
+    const halfStar = '½';
+    const emptyStar = '☆';
+
+    let remaining = roundedRating;
+    
+    // Add full stars
+    for (let i = 0; i < Math.floor(roundedRating); i++) {
+        stars += fullStar;
+        remaining--;
+    }
+    
+    // Add half star if applicable
+    if (remaining === 0.5) {
+        stars += halfStar;
+        remaining = 0;
+    }
+    
+    // Add empty stars to complete 5 total
+    while (stars.length < 5) {
+        stars += emptyStar;
+    }
+
+    return `<span class="star-rating">${stars}</span>`;
 }
 
+// Function to calculate and display average rating
 function averageRate() {
-    let ratings = [4.8, 3.5, 5.0]; // Demo Data - Please update
-    let average = ratings.reduce((a, b) => a + b, 0) / ratings.length;
+    let ratings = [4.8, 3.5, 5.0, 4.0, 2.5]; // Demo Data
+    let total = ratings.reduce((a, b) => a + b, 0);
+    let average = ratings.length > 0 ? total / ratings.length : 0;
 
-    //Outputting the Star Rating to productpage
     let resImg = document.getElementById('reviews_Img');
-    resImg.innerHTML = "";
-    let img = document.createElement('img');
-    img.src = starRating(average);
-    resImg.appendChild(img);
+    if (resImg) {
+        resImg.innerHTML = `
+            Average Rating: ${average.toFixed(1)} / 5
+            ${starRating(average)}
+        `;
+    }
 }
 
+// Function to display individual review text
 function reviewText(username, rating, review) {
     let resText = document.getElementById('reviews_Text');
-    let img = document.createElement('img');
-    img.src = starRating(rating);
+    if (resText) {
+        const reviewDiv = document.createElement('div');
+        reviewDiv.classList.add('review-text');
 
-    resText.appendChild(document.createTextNode(username));
-    resText.appendChild(document.createElement('br'));
-    resText.appendChild(img);
-    resText.appendChild(document.createElement('br'));
-    resText.appendChild(document.createTextNode(review));
-    resText.appendChild(document.createElement('hr'));
+        reviewDiv.innerHTML = `
+            <p><strong>${username}</strong></p>
+            ${starRating(rating)}
+            <p>${review}</p>
+        `;
+        resText.appendChild(reviewDiv);
+    }
 }
 
-// Slideshow Functions
+// --- Slideshow Functions ---
 let slideIndex = 1;
-let slideTimer;
+// Removed: let slideTimer;
 
 function plusSlides(n) {
     showSlides(slideIndex += n);
@@ -62,80 +75,41 @@ function currentSlide(n) {
 }
 
 function showSlides(n) {
-    let i;
     let slides = document.getElementsByClassName("mySlides");
     let dots = document.getElementsByClassName("dot");
+
+    if (slides.length === 0) return;
 
     if (n > slides.length) { slideIndex = 1; }
     if (n < 1) { slideIndex = slides.length; }
 
-    for (i = 0; i < slides.length; i++) {
+    for (let i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" dotActive", "");
+    for (let i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
     }
 
     slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " dotActive";
+    dots[slideIndex - 1].className += " active";
 }
 
-function startAutoPlay() {
-    slideTimer = setInterval(function() { plusSlides(1); }, 10000);
-}
-
-function stopAutoPlay() {
-    clearInterval(slideTimer);
-}
+// Removed: startAutoPlay and stopAutoPlay functions
 
 // Run when page loads
 document.addEventListener("DOMContentLoaded", function() {
-    //
-    //For demo purposes
-    //
-    //Pro Des
-    addDescription("Nestled between rolling emerald hills and a shimmering lake, the view unfolds like a painted masterpiece. Golden sunlight dances across the water’s surface, casting ripples of light that glisten like scattered diamonds. Towering trees sway gently in the breeze, their leaves whispering secrets of the forest. In the distance, snow-capped peaks pierce the sky, their majestic silhouettes softened by a veil of mist. Wildflowers bloom in vibrant clusters along the winding path, adding bursts of color to the tranquil scene. The air is crisp and fragrant, filled with birdsong and serenity—a perfect harmony of nature’s finest elements, inviting peaceful reflection.");
-    //Reviews
+    // Run review functions with demo data
     averageRate();
     reviewText('Olivia Brown', 4.8, 'This liquid foundation is amazing! It blends seamlessly, gives a natural glow, and lasts all day without feeling heavy.');
     reviewText('Hannah Wilson', 3.5, 'The eyeshadow palette has gorgeous shades, but some colors don’t have great pigmentation. Works well with primer though.');
     reviewText('Sophia Martinez', 5.0, 'Absolutely love this matte lipstick! The color payoff is incredible, it doesn’t dry my lips, and it stays put even after eating.');
 
-    //
-    //Image Slideshow
-    //
+    // Image Slideshow setup
     showSlides(slideIndex);
-    startAutoPlay();
-
-    let slideshow = document.querySelector(".slideshow-container");
-    slideshow.addEventListener("mouseenter", stopAutoPlay);
-    slideshow.addEventListener("mouseleave", startAutoPlay);
-
-
-    //Modal setup
-    const modal = document.getElementById("imgModal");
-    const modalImg = document.getElementById("modalImg");
-    const captionText = document.getElementById("caption");
-    const closeBtn = document.querySelector(".close");
-    const navBar = document.getElementById("navBarID")
-
-    document.querySelectorAll(".mySlidesImgs").forEach(img => {
-        img.addEventListener("click", () => {
-            modal.style.display = "block";
-            modalImg.src = img.src;
-            //captionText.innerHTML = img.alt || img.id;
-            navBar.style.display = "none";
-        });
-    });
-    closeBtn.onclick = () => {
-        modal.style.display = "none";
-        navBar.style.display = "block";
-    };
-
-    modal.onclick = (e) => {
-        if (e.target === modal) {
-            modal.style.display = "none";
-            navBar.style.display = "block";
-        }
-    };
+    // Removed auto-play calls and mouse listeners
 });
+
+// Add slideshow container
+const slideshowContainer = document.createElement('div');
+slideshowContainer.className = 'slideshow-container';
+document.body.appendChild(slideshowContainer);

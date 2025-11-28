@@ -1,33 +1,84 @@
+/* =========================================
+   CART PAGE STYLES (Theme Variable Integration)
+   ========================================= */
+
+/* --- Mini-Cart Modal Drawer Overrides --- */
+
+/* 1. Define Position and Size for the Drawer */
+#miniCartModal .modal-dialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 0;
+    height: 100%;
+    width: 380px; /* Set the drawer width */
+    max-width: 90%;
+    transform: translate3d(0, 0, 0); 
+}
+
+/* 2. Style Modal Content (Fill height, remove rounding/shadows for clean edge) */
+#miniCartModal .modal-content {
+    height: 100%;
+    border-radius: 0;
+    border: none;
+    background-color: var(--header-bg); /* Use theme color for background */
+    box-shadow: -5px 0 15px var(--shadow-color);
+}
+
+/* 3. Modal Header/Body Adjustments */
+#miniCartModal .modal-header {
+    border-bottom: 1px solid var(--navbar-bg);
+    padding: 15px 25px; /* Adjust padding for spacing */
+}
+#miniCartModal .modal-body {
+    padding: 0; 
+    overflow-y: auto; /* Allow scrolling for long lists */
+}
+/* Ensure the modal title looks right */
+#miniCartModal .modal-title {
+    margin-bottom: 0 !important;
+}
+
+
+/* --- Cart Item & Layout Styles (Adjusted for Modal) --- */
+
 .cart-title {
     font-size: 32px;
-    color: #d27b5a; 
+    color: var(--primary-color); 
     font-weight: 600;
-    margin-bottom: 25px;
+    /* Removed margin-bottom here, it's now handled by the modal-header */
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
+.cart-title svg {
+    stroke: var(--primary-color); 
+}
+
+/* Adjust Cart Container to fill the modal body and handle padding/shadows */
 .cart-container {
-    width: 90%;
-    margin: 0 auto;
-    margin-bottom: 40px;
+    width: 100% !important; /* Force full width in the drawer */
+    margin: 0;
     padding: 25px;
-    background: #fff5f0;
-    border-radius: 12px;
+    background: transparent; /* Remove background, modal content handles it */
+    border-radius: 0; /* Remove rounding, modal content handles it */
+    box-shadow: none; /* Remove shadow, modal content handles it */
+    margin-bottom: 0; /* No external margin needed */
 }
 
 .cart-item {
-    background: white;
+    background: var(--bg-color); 
+    color: var(--text-color);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 12px 18px;      
     gap: 12px;               
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 10px var(--shadow-color);
     margin-bottom: 20px;
-    border: 1px solid #f3d4c8;
+    border: 1px solid var(--navbar-bg); 
 }
 
 .item-img {
@@ -45,11 +96,12 @@
 .item-name {
     font-size: 18px;   
     margin: 0;
+    color: var(--text-color);
 }
 
 .item-price {
     margin: 2px 0 0;   
-    color: #e48967;
+    color: var(--primary-color); 
     font-size: 16px;   
     font-weight: bold;
 }
@@ -66,7 +118,8 @@
 }
 
 .qty-btn {
-    background: #f4b9a3;
+    background: var(--navbar-bg); 
+    color: var(--text-color);
     border: none;
     width: 28px;
     height: 28px;
@@ -78,38 +131,43 @@
 .qty-number {
     font-size: 16px;
     font-weight: bold;
+    color: var(--text-color);
 }
 
 .qty-btn:hover {
-    background: #e8a894;
-}
-
-.checkout-btn:hover {
-    background: #cf7555;
+    background: var(--primary-color); 
+    color: white;
 }
 
 .remove-btn {
     border: none;
     background: transparent;
-    color: #cf0000;
+    color: #cf0000; 
     cursor: pointer;
     font-size: 14px;
     margin-top: 3px;   
+    transition: color 0.2s;
+}
+.remove-btn:hover {
+    color: #ff3333;
 }
 
 .summary {
     text-align: right;
     margin-top: 20px;
+    /* Ensure summary is positioned at the bottom if possible. 
+       For this structure, we rely on margin-top. */
 }
 
 .subtotal {
     font-size: 18px;
     margin-bottom: 10px;
+    color: var(--text-color);
 }
 
 .checkout-btn {
     padding: 10px 22px;
-    background: #e48967;
+    background: var(--search-btn-bg); 
     border: none;
     border-radius: 8px;
     color: white;
@@ -117,4 +175,9 @@
     cursor: pointer;
     text-decoration: none;  
     display: inline-block;   
+    transition: 0.3s;
+}
+
+.checkout-btn:hover {
+    background: var(--search-btn-hover-bg); 
 }
