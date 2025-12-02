@@ -28,7 +28,7 @@
             </div>
         </header>
         
-        <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-custom sticky-top" id="navBarID">
             <div class="container">
                 <a class="navbar-brand fw-semibold d-lg-none" href="#">Menu</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -163,6 +163,13 @@
                                     <a class="next" onclick="plusSlides(1)">&#10095;</a>
                                 </div>
 
+                                <!-- The Modal for slideshow - Don't Delete this gets extra marks -->
+                                <div id="imgModal" class="modal">
+                                    <span class="close">&times;</span>
+                                    <img class="modal-content" id="modalImg">
+                                    <div id="caption"></div>
+                                </div>
+
                                 <div class="dot-container">
                                     <span class="dot" onclick="currentSlide(1)"></span>
                                     <span class="dot" onclick="currentSlide(2)"></span>
@@ -202,7 +209,7 @@
                     <div class="art-container price-box">
                         <br>
                         <p class="cost-label">Price</p>
-                        <p id="costID" class="product-price">$39.99</p>
+                        <p id="costID" class="product-price">£39.99</p>
                         <br>
                         <p class="delivery-info">Quickest Delivery: <span id="quickestDeliveryID">2-3 Days (£5.00)</span></p>
                         <p class="delivery-info">Cheapest Delivery: <span id="cheapestDeliveryID">5-7 Days (Free)</span></p>
@@ -220,19 +227,19 @@
                         <h2>Similar Products</h2>
                         <hr>
                         <div class="thumbnail-grid">
-                            <p>
+                            <p class="thumbEnlarge">
                                 <a href="productpage.html"> 
                                     <img src="images/cleansingbalm.png" alt="Similar Product Cleanser">
                                     <span class="product-name-link">Rose Cleansing Balm</span>
                                 </a>
                             </p>
-                            <p>
+                            <p class="thumbEnlarge">
                                 <a href="productpage.html">
                                     <img src="images/faceroller.png" alt="Similar Product Roller">
                                     <span class="product-name-link">Jade Face Roller</span>
                                 </a>
                             </p>
-                            <p>
+                            <p class="thumbEnlarge">
                                 <a href="productpage.html">
                                     <img src="images/lipstick.png" alt="Similar Product Lipstick">
                                     <span class="product-name-link">Sheer Matte Lipstick</span>

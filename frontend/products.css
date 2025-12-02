@@ -232,9 +232,105 @@
 }
 
 .star-rating {
-    color: gold; /* Keep star color consistent */
+    color: #f7b9a1; 
     font-size: 1.3rem;
     letter-spacing: 2px;
     display: block;
     margin: 5px 0;
+}
+
+.slideContainer{ 
+    position: relative;
+    display: flex;
+    max-width: 20%; 
+}
+
+#slider {
+    appearance: none;
+}
+
+#slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #f7b9a1;
+    cursor: pointer;
+}
+
+/*
+Source - https://stackoverflow.com/a
+Posted by wouch
+Retrieved 2025-11-27, License - CC BY-SA 4.0
+Edited by Alice Hicks 2025-11-27
+*/
+
+.range-text {
+  position: absolute;
+  top: 58%;        
+  transform: translate(-50%, -50%); 
+  width: 25px;           
+  height: 25px;          
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #b76d51;
+  text-align: center;
+  line-height: 1;
+  pointer-events: none; 
+  font-size: smaller; 
+}
+
+/* Please don't just remove this 
+    We get extra marks for this stuff */
+
+/* */
+/* Slideshow modal */
+/* */
+/* Modal container */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+}
+
+/* Modal image */
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 80%;
+  max-height: 80%;
+  width: auto;
+  height: auto;
+}
+
+/* Caption */
+#caption {
+  margin: auto;
+  display: block;
+  text-align: center;
+  color: #ccc;
+  padding: 10px;
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close:hover {
+  color: #bbb;
 }

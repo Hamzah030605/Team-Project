@@ -106,7 +106,33 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Image Slideshow setup
     showSlides(slideIndex);
-    // Removed auto-play calls and mouse listeners
+
+    //Modal setup -- KEEP THIS - Extra Marks
+    const modal = document.getElementById("imgModal");
+    const modalImg = document.getElementById("modalImg");
+    const captionText = document.getElementById("caption");
+    const closeBtn = document.querySelector(".close");
+    const navBar = document.getElementById("navBarID")
+
+    document.querySelectorAll(".mySlidesImgs").forEach(img => {
+        img.addEventListener("click", () => {
+            modal.style.display = "block";
+            modalImg.src = img.src;
+            //captionText.innerHTML = img.alt || img.id;
+            navBar.style.display = "none";
+        });
+    });
+    closeBtn.onclick = () => {
+        modal.style.display = "none";
+        navBar.style.display = "block";
+    };
+
+    modal.onclick = (e) => {
+        if (e.target === modal) {
+            modal.style.display = "none";
+            navBar.style.display = "block";
+        }
+    }
 });
 
 // Add slideshow container
