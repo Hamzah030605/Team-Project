@@ -1,0 +1,63 @@
+{
+  "categories": [
+    {
+      "name": "Skincare",
+      "slug": "skincare",
+      "icon": "assets/images/categories/skincare.svg",
+      "color": "#E8B4B8",
+      "product_count": 20,
+      "description": "Nourishing serums, moisturizers, and treatments for radiant skin"
+    },
+    {
+      "name": "Makeup",
+      "slug": "makeup",
+      "icon": "assets/images/categories/makeup.svg",
+      "color": "#D27B5A",
+      "product_count": 18,
+      "description": "Premium cosmetics for flawless, long-lasting looks"
+    },
+    {
+      "name": "Tools",
+      "slug": "tools",
+      "icon": "assets/images/categories/tools.svg",
+      "color": "#8B7355",
+      "product_count": 14,
+      "description": "Professional beauty tools and accessories"
+    },
+    {
+      "name": "Haircare",
+      "slug": "haircare",
+      "icon": "assets/images/categories/haircare.svg",
+      "color": "#9B7EDE",
+      "product_count": 16,
+      "description": "Shampoos, treatments, and styling products for healthy hair"
+    },
+    {
+      "name": "Fragrance",
+      "slug": "fragrance",
+      "icon": "assets/images/categories/fragrance.svg",
+      "color": "#F5C6AA",
+      "product_count": 12,
+      "description": "Luxurious perfumes and scented body products"
+    },
+    {
+      "name": "Bath & Body",
+      "slug": "bath-body",
+      "icon": "assets/images/categories/bath-body.svg",
+      "color": "#87CEEB",
+      "product_count": 12,
+      "description": "Indulgent body care for head-to-toe pampering"
+    },
+    {
+      "name": "Wellness",
+      "slug": "wellness",
+      "icon": "assets/images/categories/wellness.svg",
+      "color": "#98D8AA",
+      "product_count": 8,
+      "description": "Aromatherapy and self-care essentials for mind and body"
+    }
+  ],
+  "total_products": 100,
+  "last_updated": "2025-12-04"
+}
+
