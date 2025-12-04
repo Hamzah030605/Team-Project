@@ -42,7 +42,7 @@ def serve(path):
     requested = os.path.join(FRONTEND_DIR, path)
     if path and os.path.exists(requested):
         return send_from_directory(FRONTEND_DIR, path)
-    return send_from_directory(FRONTEND_DIR, 'index.html')
+    return send_from_directory(FRONTEND_DIR, 'register.html')
 
 if __name__ == '__main__':
     # Allow overriding the port via the PORT environment variable (useful if 5000 is busy)
