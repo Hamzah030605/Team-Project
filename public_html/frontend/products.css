@@ -1,0 +1,336 @@
+/* --- Product Page Layout (Uses Flexbox for neatness) --- */
+
+.product-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.main-content {
+    flex: 3; /* Takes up about 70-75% */
+    min-width: 60%;
+}
+
+.right-sidebar {
+    flex: 1; /* Takes remaining space */
+    min-width: 250px;
+}
+
+@media screen and (max-width: 992px) {
+    .product-layout {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .main-content, .right-sidebar {
+        width: 100%;
+        min-width: auto;
+    }
+}
+
+/* --- Container Styling --- */
+.art-container {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    background-color: var(--header-bg);
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+/* --- Product Description & Features --- */
+.product-description {
+    padding-left: 20px;
+    flex: 1;
+    color: var(--text-color);
+}
+.product-description h3 {
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+.product-features {
+    list-style: disc;
+    padding-left: 20px;
+}
+.product-features li {
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+/* --- Pricing/Stock Box --- */
+.price-box {
+    text-align: center;
+}
+.cost-label {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+.product-price {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+.delivery-info span {
+    font-weight: 500;
+    color: var(--primary-color);
+}
+.stock-info {
+    color: var(--text-color);
+}
+.stock-info span {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.btn-add-to-cart {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--search-btn-bg);
+    color: white;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.btn-add-to-cart:hover {
+    background-color: var(--search-btn-hover-bg);
+}
+
+.meta-info p {
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+.meta-info span {
+    font-weight: 500;
+}
+
+/* --- Image Slide Show --- */
+.slideshow-wrapper {
+    max-width: 45%;
+    min-width: 300px;
+}
+.slideshow-container {
+    width: 100%;
+    position: relative;
+    margin: 0;
+}
+.mySlides {
+    display: none;
+    text-align: center;
+}
+.mySlidesImgs {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+}
+.dot-container {
+    text-align: center;
+    padding-top: 10px;
+}
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 10;
+}
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+.prev:hover, .next:hover {
+    background-color: var(--primary-color);
+}
+.dot {
+    cursor: pointer;
+    height: 10px;
+    width: 10px;
+    margin: 0 4px;
+    background-color: var(--navbar-bg);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+.active, .dot:hover {
+    background-color: var(--primary-color);
+}
+
+/* --- Similar Products (Thumbnail Box) --- */
+.thumbnail-box {
+    text-align: center;
+}
+
+.thumbnail-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.thumbnail-grid p {
+    margin: 0;
+}
+
+.thumbnail-grid a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.thumbnail-grid a:hover {
+    background-color: var(--secondary-bg);
+    box-shadow: 0 1px 4px var(--shadow-color);
+}
+
+.thumbnail-grid img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.product-name-link {
+    flex-grow: 1;
+    text-align: left;
+    font-weight: 500;
+}
+
+/* --- Reviews --- */
+.review-section {
+    padding: 20px;
+}
+
+.average-rating {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.review-text {
+    /* Styles for individual review text/content if needed */
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--navbar-bg);
+}
+
+.star-rating {
+    color: #f7b9a1; 
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    display: block;
+    margin: 5px 0;
+}
+
+.slideContainer{ 
+    position: relative;
+    display: flex;
+    max-width: 20%; 
+}
+
+#slider {
+    appearance: none;
+}
+
+#slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #f7b9a1;
+    cursor: pointer;
+}
+
+/*
+Source - https://stackoverflow.com/a
+Posted by wouch
+Retrieved 2025-11-27, License - CC BY-SA 4.0
+Edited by Alice Hicks 2025-11-27
+*/
+
+.range-text {
+  position: absolute;
+  top: 58%;        
+  transform: translate(-50%, -50%); 
+  width: 25px;           
+  height: 25px;          
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #b76d51;
+  text-align: center;
+  line-height: 1;
+  pointer-events: none; 
+  font-size: smaller; 
+}
+
+/* Please don't just remove this 
+    We get extra marks for this stuff */
+
+/* */
+/* Slideshow modal */
+/* */
+/* Modal container */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+}
+
+/* Modal image */
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 80%;
+  max-height: 80%;
+  width: auto;
+  height: auto;
+}
+
+/* Caption */
+#caption {
+  margin: auto;
+  display: block;
+  text-align: center;
+  color: #ccc;
+  padding: 10px;
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close:hover {
+  color: #bbb;
+}
