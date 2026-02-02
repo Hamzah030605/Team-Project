@@ -1,13 +1,8 @@
 <?php
-/**
- * Products Listing Page
- * Shows all products filtered by category, subcategory, or search
- */
 require_once __DIR__ . '/session.php';
 
 $u = SITE_URL;
 
-// Get filters
 $category = trim($_GET['category'] ?? '');
 $subcategory = trim($_GET['sub'] ?? '');
 $search = trim($_GET['search'] ?? '');
@@ -15,7 +10,6 @@ $mine = isset($_GET['mine']) && isLoggedIn();
 
 $conn = getDB();
 
-// Build query
 $sql = "SELECT p.*, u.username as seller_name FROM products p 
         LEFT JOIN users u ON p.posted_by = u.id WHERE 1=1";
 $params = [];
@@ -50,14 +44,18 @@ if ($mine) {
 $sql .= " ORDER BY p.created_at DESC";
 
 $stmt = $conn->prepare($sql);
-if (!empty($params)) {
-    $stmt->bind_param($types, ...$params);
+if ($stmt) {
+    if (!empty($params)) {
+        $stmt->bind_param($types, ...$params);
+    }
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $products = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+    $stmt->close();
+} else {
+    $products = [];
 }
-$stmt->execute();
-$products = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-$stmt->close();
 
-// Page title
 $pageTitle = 'All Products';
 if ($category && $subcategory) {
     $pageTitle = ucfirst($category) . ' - ' . ucfirst($subcategory);
@@ -92,7 +90,6 @@ $error = getFlash('error');
     <?php include 'includes/nav.php'; ?>
 
     <main class="container py-4">
-        <!-- Special Offer Banner -->
         <div class="promo-banner mb-4" style="background: linear-gradient(135deg, #d27b5a 0%, #e8a87c 100%); color: white; padding: 1rem 1.5rem; border-radius: 12px; display: flex; align-items: center; gap: 15px;">
             <div style="font-size: 2.5rem;">🎁</div>
             <div>
@@ -101,7 +98,6 @@ $error = getFlash('error');
             </div>
         </div>
 
-        <!-- Breadcrumb -->
         <nav class="breadcrumb-nav mb-3">
             <a href="<?php echo $u; ?>/products.php" style="color: #d27b5a;">All Products</a>
             <?php if ($category): ?>
@@ -128,7 +124,6 @@ $error = getFlash('error');
             <div class="alert alert-danger"><?php echo e($error); ?></div>
         <?php endif; ?>
 
-        <!-- Filters -->
         <div class="filter-section">
             <form class="row g-3 align-items-end" method="GET">
                 <div class="col-md-3">

@@ -1,26 +1,16 @@
 <?php
-/**
- * Add Product Page
- * Allows logged-in users to add new products with image upload
- */
 require_once __DIR__ . '/session.php';
-
 requireLogin();
-
 $error = '';
 $uploadDir = __DIR__ . '/uploads/products/';
-
-// Create upload directory if it doesn't exist
 if (!is_dir($uploadDir)) {
     mkdir($uploadDir, 0755, true);
 }
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name'] ?? '');
     $price = floatval($_POST['price'] ?? 0);
     $description = trim($_POST['description'] ?? '');
     $category = trim($_POST['category'] ?? '');
-    
     if (empty($name)) {
         $error = 'Product name is required.';
     } elseif ($price <= 0) {
@@ -30,26 +20,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $conn = getDB();
         $userId = getCurrentUserId();
-        $image = 'assets/images/products/default.svg'; // Default image
-        
-        // Handle image upload
+        $image = 'assets/images/products/default.svg';
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-            $maxSize = 5 * 1024 * 1024; // 5MB
-            
+            $maxSize = 5 * 1024 * 1024;
             $fileType = $_FILES['image']['type'];
             $fileSize = $_FILES['image']['size'];
-            
             if (!in_array($fileType, $allowedTypes)) {
                 $error = 'Invalid image type. Please upload JPG, PNG, GIF, or WebP.';
             } elseif ($fileSize > $maxSize) {
                 $error = 'Image size must be less than 5MB.';
             } else {
-                // Generate unique filename
                 $extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
                 $filename = 'product_' . time() . '_' . uniqid() . '.' . $extension;
                 $uploadPath = $uploadDir . $filename;
-                
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
                     $image = 'uploads/products/' . $filename;
                 } else {
@@ -57,17 +41,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
         }
-        
         if (empty($error)) {
-            $stmt = $conn->prepare("INSERT INTO products (name, price, description, category, image, posted_by) VALUES (?, ?, ?, ?, ?, ?)");
+            $sql = "INSERT INTO products (name, price, description, category, image, posted_by) VALUES (?, ?, ?, ?, ?, ?)";
+            echo "<pre>";
+            echo "SQL: $sql\n";
+            echo "Name: $name\n";
+            echo "Price: $price\n";
+            echo "Category: $category\n";
+            echo "Image path: $image\n";
+            echo "User ID: $userId\n";
+            echo "</pre>";
+            $stmt = $conn->prepare($sql);
+            if ($stmt === false) {
+                die("<h3 style='color: red;'>SQL PREPARE FAILED</h3>
+                     <p>Error: " . htmlspecialchars($conn->error) . "</p>");
+            }
             $stmt->bind_param("sdsssi", $name, $price, $description, $category, $image, $userId);
-            
             if ($stmt->execute()) {
-                setFlash('success', 'Product "' . $name . '" added successfully!');
+                setFlash('success', 'Product added!');
                 header('Location: /public_html/products.php?mine=1');
                 exit;
             } else {
-                $error = 'Failed to add product. Please try again.';
+                die("<h3 style='color: red;'>EXECUTE FAILED</h3>
+                     <p>Error: " . htmlspecialchars($stmt->error) . "</p>");
             }
             $stmt->close();
         }
@@ -91,15 +87,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <?php include 'includes/nav.php'; ?>
-
     <main class="container py-4">
         <div class="add-form">
             <h2>Add New Product</h2>
-            
             <?php if ($error): ?>
                 <div class="alert alert-danger"><?php echo e($error); ?></div>
             <?php endif; ?>
-
             <form method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="name" class="form-label">Product Name *</label>
@@ -107,7 +100,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                            placeholder="e.g., Rose Hydrating Serum"
                            value="<?php echo e($_POST['name'] ?? ''); ?>">
                 </div>
-
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="price" class="form-label">Price (£) *</label>
@@ -115,7 +107,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                placeholder="29.99"
                                value="<?php echo e($_POST['price'] ?? ''); ?>">
                     </div>
-
                     <div class="col-md-6 mb-3">
                         <label for="category" class="form-label">Category *</label>
                         <select class="form-select" id="category" name="category" required>
@@ -130,14 +121,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </select>
                     </div>
                 </div>
-
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
                     <textarea class="form-control" id="description" name="description" rows="4" 
                               placeholder="Describe your product..."><?php echo e($_POST['description'] ?? ''); ?></textarea>
                 </div>
-
-                <!-- Image Upload Section -->
                 <div class="mb-4">
                     <label class="form-label">Product Image</label>
                     <div class="upload-area" id="uploadArea" onclick="document.getElementById('image').click()">
@@ -149,7 +137,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <img id="imagePreview" class="image-preview" alt="Preview">
                     <p id="fileName" class="text-muted small mt-2"></p>
                 </div>
-
                 <div class="d-flex gap-3">
                     <button type="submit" class="btn btn-primary px-4">
                         ➕ Add Product
@@ -159,46 +146,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </div>
     </main>
-
     <?php include 'includes/footer.php'; ?>
-
     <script>
         const uploadArea = document.getElementById('uploadArea');
         const imageInput = document.getElementById('image');
         const imagePreview = document.getElementById('imagePreview');
         const fileName = document.getElementById('fileName');
-
-        // Preview image on select
         imageInput.addEventListener('change', function(e) {
             if (this.files && this.files[0]) {
                 const file = this.files[0];
                 const reader = new FileReader();
-                
                 reader.onload = function(e) {
                     imagePreview.src = e.target.result;
                     imagePreview.style.display = 'block';
                     fileName.textContent = file.name + ' (' + (file.size / 1024 / 1024).toFixed(2) + ' MB)';
                 }
-                
                 reader.readAsDataURL(file);
             }
         });
-
-        // Drag and drop
         uploadArea.addEventListener('dragover', function(e) {
             e.preventDefault();
             this.classList.add('dragover');
         });
-
         uploadArea.addEventListener('dragleave', function(e) {
             e.preventDefault();
             this.classList.remove('dragover');
         });
-
         uploadArea.addEventListener('drop', function(e) {
             e.preventDefault();
             this.classList.remove('dragover');
-            
             if (e.dataTransfer.files.length) {
                 imageInput.files = e.dataTransfer.files;
                 imageInput.dispatchEvent(new Event('change'));

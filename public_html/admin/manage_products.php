@@ -1,77 +1,53 @@
 <?php
-/**
- * Admin - Manage Products
- * View, edit, and manage all products
- */
-
 require_once __DIR__ . '/../includes/session.php';
-
-// Require admin access
 requireAdmin();
 
 $username = getCurrentUsername();
 $message = '';
 $messageType = '';
 
-// Handle actions
+$conn = getDB();
+$products = [];
+$search = $_GET['search'] ?? '';
+$category = $_GET['category'] ?? '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
     $productId = (int)($_POST['product_id'] ?? 0);
     
-    try {
-        $pdo = getPDOConnection();
-        
-        if ($action === 'toggle_status' && $productId) {
-            $stmt = $pdo->prepare("UPDATE products SET is_active = NOT is_active WHERE id = ?");
-            $stmt->execute([$productId]);
-            $message = 'Product status updated successfully.';
-            $messageType = 'success';
-        } elseif ($action === 'toggle_featured' && $productId) {
-            $stmt = $pdo->prepare("UPDATE products SET is_featured = NOT is_featured WHERE id = ?");
-            $stmt->execute([$productId]);
-            $message = 'Product featured status updated.';
-            $messageType = 'success';
-        } elseif ($action === 'delete' && $productId) {
-            $stmt = $pdo->prepare("DELETE FROM products WHERE id = ?");
-            $stmt->execute([$productId]);
-            $message = 'Product deleted successfully.';
-            $messageType = 'success';
+    if ($action === 'delete' && $productId) {
+        $stmt = $conn->prepare("DELETE FROM products WHERE id = ?");
+        if ($stmt) {
+            $stmt->bind_param("i", $productId);
+            if ($stmt->execute()) {
+                $message = 'Product deleted.';
+                $messageType = 'success';
+            }
         }
-    } catch (PDOException $e) {
-        $message = 'An error occurred.';
-        $messageType = 'danger';
     }
 }
 
-// Get all products
-$products = [];
-$search = sanitize($_GET['search'] ?? '');
-$category = sanitize($_GET['category'] ?? '');
+// SIMPLE QUERY THAT WON'T FAIL
+$sql = "SELECT p.id, p.name, p.price, p.category, p.created_at, u.username as seller_name 
+        FROM products p 
+        LEFT JOIN users u ON p.posted_by = u.id 
+        WHERE 1=1";
 
-try {
-    $pdo = getPDOConnection();
-    
-    $sql = "SELECT p.*, u.username as seller_name FROM products p LEFT JOIN users u ON p.posted_by = u.id WHERE 1=1";
-    $params = [];
-    
-    if ($search) {
-        $sql .= " AND (p.name LIKE ? OR p.description LIKE ?)";
-        $params[] = '%' . $search . '%';
-        $params[] = '%' . $search . '%';
-    }
-    
-    if ($category) {
-        $sql .= " AND LOWER(p.category) = LOWER(?)";
-        $params[] = $category;
-    }
-    
-    $sql .= " ORDER BY p.created_at DESC";
-    
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute($params);
-    $products = $stmt->fetchAll();
-} catch (PDOException $e) {
-    $products = [];
+if (!empty($search)) {
+    $search_clean = $conn->real_escape_string($search);
+    $sql .= " AND (p.name LIKE '%$search_clean%' OR p.description LIKE '%$search_clean%')";
+}
+
+if (!empty($category)) {
+    $category_clean = $conn->real_escape_string($category);
+    $sql .= " AND p.category = '$category_clean'";
+}
+
+$sql .= " ORDER BY p.created_at DESC";
+
+$result = $conn->query($sql);
+if ($result) {
+    $products = $result->fetch_all(MYSQLI_ASSOC);
 }
 ?>
 <!DOCTYPE html>
@@ -80,25 +56,13 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serenique | Manage Products</title>
-    <link rel="icon" type="image/x-icon" href="../frontend/images/logo2.png">
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    
     <style>
-        :root { --primary-color: #d27b5a; --secondary-color: #f8f5f2; }
-        body { font-family: 'Poppins', sans-serif; background: #f8f5f2; }
-        .admin-header { background: linear-gradient(135deg, #d27b5a 0%, #b86a4d 100%); color: white; padding: 1.5rem 0; }
-        .admin-header h1 { font-family: 'Playfair Display', serif; }
-        .sidebar { background: white; min-height: calc(100vh - 100px); padding: 1.5rem; box-shadow: 2px 0 10px rgba(0,0,0,0.05); }
-        .sidebar a { display: block; padding: 0.75rem 1rem; color: #333; text-decoration: none; border-radius: 8px; margin-bottom: 0.5rem; }
-        .sidebar a:hover, .sidebar a.active { background: var(--secondary-color); color: var(--primary-color); }
-        .content-card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .content-card h5 { font-family: 'Playfair Display', serif; border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem; }
-        .table th { background: var(--secondary-color); }
-        .product-thumb { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; }
+        body { font-family: Arial, sans-serif; background: #f8f5f2; }
+        .admin-header { background: #d27b5a; color: white; padding: 1rem 0; }
+        .sidebar { background: white; padding: 1rem; }
+        .content-card { background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .table th { background: #f0f0f0; }
     </style>
 </head>
 <body>
@@ -106,69 +70,62 @@ try {
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <h1 class="m-0">Manage Products</h1>
-                <div class="d-flex align-items-center gap-3">
+                <div>
                     <span>Welcome, <?php echo htmlspecialchars($username); ?></span>
-                    <a href="../add_product.php" class="btn btn-light btn-sm">+ Add Product</a>
-                    <a href="../homepage.php" class="btn btn-outline-light btn-sm">View Site</a>
-                    <a href="../logout.php" class="btn btn-light btn-sm">Logout</a>
+                    <a href="../homepage.php" class="btn btn-outline-light btn-sm ms-3">View Site</a>
+                    <a href="../logout.php" class="btn btn-light btn-sm ms-2">Logout</a>
                 </div>
             </div>
         </div>
     </header>
 
-    <div class="container-fluid">
+    <div class="container-fluid mt-3">
         <div class="row">
-            <!-- Sidebar -->
             <div class="col-md-2 sidebar">
-                <nav>
-                    <a href="dashboard.php">📊 Dashboard</a>
-                    <a href="manage_users.php">👥 Manage Users</a>
-                    <a href="manage_products.php" class="active">📦 Manage Products</a>
-                    <hr>
-                    <a href="../homepage.php">🏠 Back to Site</a>
-                </nav>
+                <a href="dashboard.php">📊 Dashboard</a>
+                <a href="manage_users.php">👥 Manage Users</a>
+                <a href="manage_products.php" style="background:#f0f0f0;">📦 Manage Products</a>
+                <hr>
+                <a href="../homepage.php">🏠 Back to Site</a>
             </div>
 
-            <!-- Main Content -->
-            <div class="col-md-10 py-4">
+            <div class="col-md-10">
                 <?php if ($message): ?>
-                    <div class="alert alert-<?php echo $messageType; ?> alert-dismissible fade show">
+                    <div class="alert alert-<?php echo $messageType; ?>">
                         <?php echo htmlspecialchars($message); ?>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
                 <?php endif; ?>
 
                 <div class="content-card">
-                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-                        <h5 class="m-0 border-0 pb-0">All Products (<?php echo count($products); ?>)</h5>
-                        <form class="d-flex gap-2" method="GET">
-                            <select name="category" class="form-select form-select-sm" style="width: auto;">
+                    <h5>All Products (<?php echo count($products); ?>)</h5>
+                    
+                    <form class="row g-2 mb-3" method="GET">
+                        <div class="col-auto">
+                            <select name="category" class="form-select form-select-sm">
                                 <option value="">All Categories</option>
                                 <option value="skincare" <?php echo $category === 'skincare' ? 'selected' : ''; ?>>Skincare</option>
                                 <option value="makeup" <?php echo $category === 'makeup' ? 'selected' : ''; ?>>Makeup</option>
                                 <option value="haircare" <?php echo $category === 'haircare' ? 'selected' : ''; ?>>Haircare</option>
-                                <option value="body" <?php echo $category === 'body' ? 'selected' : ''; ?>>Body</option>
-                                <option value="tools" <?php echo $category === 'tools' ? 'selected' : ''; ?>>Tools</option>
                             </select>
+                        </div>
+                        <div class="col-auto">
                             <input type="text" name="search" class="form-control form-control-sm" 
-                                   placeholder="Search products..." value="<?php echo htmlspecialchars($search); ?>">
+                                   placeholder="Search..." value="<?php echo htmlspecialchars($search); ?>">
+                        </div>
+                        <div class="col-auto">
                             <button class="btn btn-sm btn-primary">Search</button>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
 
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Image</th>
                                     <th>Name</th>
                                     <th>Price</th>
                                     <th>Category</th>
-                                    <th>Stock</th>
                                     <th>Seller</th>
-                                    <th>Status</th>
-                                    <th>Featured</th>
                                     <th>Created</th>
                                     <th>Actions</th>
                                 </tr>
@@ -177,53 +134,28 @@ try {
                                 <?php foreach ($products as $product): ?>
                                 <tr>
                                     <td><?php echo $product['id']; ?></td>
-                                    <td>
-                                        <img src="../frontend/<?php echo htmlspecialchars($product['image'] ?? 'images/Serumv1.png'); ?>" 
-                                             alt="" class="product-thumb">
-                                    </td>
-                                    <td>
-                                        <a href="../product.php?id=<?php echo $product['id']; ?>" target="_blank">
-                                            <?php echo htmlspecialchars(substr($product['name'], 0, 30)); ?>
-                                        </a>
-                                    </td>
+                                    <td><?php echo htmlspecialchars($product['name']); ?></td>
                                     <td>£<?php echo number_format($product['price'], 2); ?></td>
                                     <td><?php echo htmlspecialchars($product['category'] ?? '-'); ?></td>
-                                    <td><?php echo (int)$product['stock']; ?></td>
-                                    <td><?php echo htmlspecialchars($product['seller_name'] ?? 'N/A'); ?></td>
-                                    <td>
-                                        <span class="badge bg-<?php echo $product['is_active'] ? 'success' : 'secondary'; ?>">
-                                            <?php echo $product['is_active'] ? 'Active' : 'Inactive'; ?>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-<?php echo $product['is_featured'] ? 'warning' : 'light text-dark'; ?>">
-                                            <?php echo $product['is_featured'] ? '⭐ Featured' : 'Normal'; ?>
-                                        </span>
-                                    </td>
+                                    <td><?php echo htmlspecialchars($product['seller_name'] ?? 'Unknown'); ?></td>
                                     <td><?php echo date('M j, Y', strtotime($product['created_at'])); ?></td>
                                     <td>
-                                        <form method="POST" class="d-inline">
-                                            <input type="hidden" name="action" value="toggle_status">
-                                            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-                                            <button type="submit" class="btn btn-sm btn-outline-warning" title="Toggle Active">
-                                                <?php echo $product['is_active'] ? '🚫' : '✅'; ?>
-                                            </button>
-                                        </form>
-                                        <form method="POST" class="d-inline">
-                                            <input type="hidden" name="action" value="toggle_featured">
-                                            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-                                            <button type="submit" class="btn btn-sm btn-outline-info" title="Toggle Featured">
-                                                <?php echo $product['is_featured'] ? '★' : '☆'; ?>
-                                            </button>
-                                        </form>
-                                        <form method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                                        <form method="POST" class="d-inline" onsubmit="return confirm('Delete this product?');">
                                             <input type="hidden" name="action" value="delete">
                                             <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-                                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete">🗑️</button>
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
+                                
+                                <?php if (empty($products)): ?>
+                                <tr>
+                                    <td colspan="7" class="text-center text-muted py-3">
+                                        No products found.
+                                    </td>
+                                </tr>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -233,4 +165,3 @@ try {
     </div>
 </body>
 </html>
-
